@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  backendUrl:'https://airdata.cleverapps.io'
 };

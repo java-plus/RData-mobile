@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-favoris',
   templateUrl: './favoris.page.html',
-  styleUrls: ['./favoris.page.scss'],
+  styleUrls: [],
 })
 export class FavorisPage implements OnInit {
 

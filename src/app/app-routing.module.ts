@@ -8,7 +8,8 @@ const routes: Routes = [
   },
   { path: 'meteo', loadChildren: './meteo/meteo.module#MeteoPageModule' },
   { path: 'favoris', loadChildren: './favoris/favoris.module#FavorisPageModule' },
-  { path: 'notifications', loadChildren: './notifications/notifications.module#NotificationsPageModule' }
+  { path: 'notifications', loadChildren: './notifications/notifications.module#NotificationsPageModule' },  { path: 'login', loadChildren: './login/login.module#LoginPageModule' }
+
 ];
 @NgModule({
   imports: [
