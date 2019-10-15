@@ -4,49 +4,49 @@ import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
   {
-    path: 'tabs',
+    path: 'secure',
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
+        path: 'meteo',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../tab1/tab1.module').then(m => m.Tab1PageModule)
+              import('../meteo/meteo.module').then(m => m.MeteoPageModule)
           }
         ]
       },
       {
-        path: 'tab2',
+        path: 'favoris',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../tab2/tab2.module').then(m => m.Tab2PageModule)
+              import('../favoris/favoris.module').then(m => m.FavorisPageModule)
           }
         ]
       },
       {
-        path: 'tab3',
+        path: 'notifications',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../tab3/tab3.module').then(m => m.Tab3PageModule)
+              import('../notifications/notifications.module').then(m => m.NotificationsPageModule)
           }
         ]
       },
       {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: '/secure/meteo',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/secure/meteo',
     pathMatch: 'full'
   }
 ];
