@@ -1,0 +1,7 @@
+{
+  "name": "RData-App",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
