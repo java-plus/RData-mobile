@@ -3,9 +3,9 @@ import {FavorisService} from '../services/favoris.service';
 import Favori from '../model/Favori';
 
 @Component({
-    selector: 'app-favoris',
-    templateUrl: './favoris.page.html',
-    styleUrls: ['./favoris.page.scss'],
+  selector: 'app-favoris',
+  templateUrl: './favoris.page.html',
+  styleUrls: [],
 })
 export class FavorisPage implements OnInit {
 
