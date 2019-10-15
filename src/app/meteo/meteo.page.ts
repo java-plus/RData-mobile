@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-meteo',
   templateUrl: './meteo.page.html',
-  styleUrls: ['./meteo.page.scss'],
+  styleUrls: [],
 })
 export class MeteoPage implements OnInit {
 
