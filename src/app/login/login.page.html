@@ -1,8 +1,3 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
 
 <ion-content>
     <form  #form="ngForm" (ngSubmit)="authentification(form)">
@@ -19,7 +14,7 @@
                 <ion-item>
                   <ion-input name="password" type="password" placeholder="Password" ngModel required></ion-input>
                 </ion-item>
-                    <ion-text *ngIf="messageError && !messageTentative" color="danger">{{messageError}}</ion-text>
+                    <ion-text *ngIf="messageError" color="danger">{{messageError}}</ion-text>
                   
                 
               </div>
