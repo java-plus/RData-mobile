@@ -8,11 +8,14 @@
 
 .logo, .titre {
     line-height: 1.5rem;
+    
+    
 }
 
 .logo {
     text-align: center;
-    border-right: 1px solid var(--ion-color-light-shade);
+    border-right: 1px solid #d7d8da59;
+    color: var(--ion-color-primary);
 }
 .titre {
     text-align: center;
