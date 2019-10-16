@@ -1,4 +1,5 @@
 <ion-content>
+   <ion-text color="primary" class="ion-text-center"> <h3>{{messageError}}</h3></ion-text>
     <ion-list>
         <ion-item *ngFor="let objetFavori of listeObjetFavori">
             <ion-card (click)="expandItem(objetFavori)" >
@@ -8,6 +9,83 @@
 
                 <ion-card-content>
                     <app-expandable [expanded]="objetFavori.expanded">
+                        <ion-list *ngIf="favoriCourant">
+                            <ion-item *ngIf="objetFavori.favori.weatherIcon === true" class="ion-align-items-center">
+                                <ion-img [src]="'http://openweathermap.org/img/wn/'+favoriCourant.mesureMeteo.weatherIcon+'@2x.png'"></ion-img>
+                            </ion-item>
+                            <ion-item *ngIf="objetFavori.favori.weatherDescription === true">
+                                <ion-label>{{favoriCourant.mesureMeteo.weatherDescription}}</ion-label>
+                            </ion-item>
+                            <ion-item *ngIf="objetFavori.favori.temperature === true">
+                                <ion-label>Temperature: {{favoriCourant.mesureMeteo.temperature}} °C</ion-label>
+                            </ion-item>
+                            <ion-item *ngIf="objetFavori.favori.tempMin === true">
+                                <ion-label>Temperature Minimale: {{favoriCourant.mesureMeteo.tempMin}} °C</ion-label>
+                            </ion-item>
+                            <ion-item *ngIf="objetFavori.favori.tempMax === true">
+                                <ion-label>Temperature Maximale: {{favoriCourant.mesureMeteo.tempMax}} °C</ion-label>
+                            </ion-item>
+                            <ion-item *ngIf="objetFavori.favori.pressure === true">
+                                <ion-label>Pression: {{favoriCourant.mesureMeteo.weatherDescription}} Pa</ion-label>
+                            </ion-item>
+                            <ion-item *ngIf="objetFavori.favori.humidity === true">
+                                <ion-label>Humidité: {{favoriCourant.mesureMeteo.humidity}} %</ion-label>
+                            </ion-item>
+                            <ion-item *ngIf="objetFavori.favori.windSpeed === true">
+                                <ion-label>Vitesse du vent: {{favoriCourant.mesureMeteo.windSpeed}} Km/h</ion-label>
+                            </ion-item>
+                            <ion-item *ngIf="objetFavori.favori.windDegrees === true">
+                                <ion-label>orientation du vent: {{favoriCourant.mesureMeteo.windDegrees}} °</ion-label>
+                            </ion-item>
+                            <ion-item *ngIf="objetFavori.favori.mesureSO2 === true">
+                                <ion-label>Mesure SO2: {{recupererMesurePollutionAvecNom('SO2').valeur}} µg/m3</ion-label>
+                            </ion-item>
+                            <ion-item *ngIf="objetFavori.favori.mesurePM10 === true">
+                                <ion-label>Mesure PM10: {{recupererMesurePollutionAvecNom('PM10').valeur}} µg/m3</ion-label>
+                            </ion-item>
+                            <ion-item *ngIf="objetFavori.favori.mesurePM25 === true">
+                                <ion-label>Mesure PM2.5: {{recupererMesurePollutionAvecNom('PM2.5').valeur}} µg/m3</ion-label>
+                            </ion-item>
+                            <ion-item *ngIf="objetFavori.favori.mesureNO2 === true">
+                                <ion-label>Mesure NO2: {{recupererMesurePollutionAvecNom('NO2').valeur}} µg/m3</ion-label>
+                            </ion-item>
+                            <ion-item *ngIf="objetFavori.favori.mesureCO === true">
+                                <ion-label>Mesure CO: {{recupererMesurePollutionAvecNom('CO').valeur}} µg/m3</ion-label>
+                            </ion-item>
+                            <ion-item *ngIf="objetFavori.favori.mesureO3 === true">
+                                <ion-label>Mesure O3: {{recupererMesurePollutionAvecNom('O3').valeur}} µg/m3</ion-label>
+                            </ion-item>
+
+
+                            <!-- mesureSO2: boolean;
+  /**
+   * choix d’afficher la mesure de pm25
+   */
+  mesurePM25: boolean;
+  /**
+   * choix d’afficher la mesure de pm10
+   */
+  mesurePM10: boolean;
+  /**
+   * choix d’afficher la mesure d’O3
+   */
+  mesureO3: boolean;
+  /**
+   * choix d’afficher choix d’afficher la mesure de no2
+   */
+  mesureNO2: boolean;
+  /**
+   * choix d’afficher la mesure de Co
+   */
+  mesureCO: boolean;
+  /**
+   * choix d’afficher la population
+   */
+  population: boolean;-->
+
+                        </ion-list>
+
+
 
                     </app-expandable>
                 </ion-card-content>
