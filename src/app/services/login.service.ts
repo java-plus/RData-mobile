@@ -67,11 +67,18 @@ export class LoginService {
                 httpOptions
             )
             .pipe(flatMap(() => {
-                    return this.http.get<Utilisateur>(`${URL_BACKEND}/auth/user`, {withCredentials: true});
-                }), tap((utilisateur) => {
-                    this._subConnecte.next(utilisateur);
-                })
+                return this.http.get<Utilisateur>(`${URL_BACKEND}/auth/user`, { withCredentials: true });
+            }), tap((utilisateur) => {
+                this._subConnecte.next(utilisateur);
+            })
             );
 
+    }
+
+    /**
+     * permet de deconnecter l’utilisateur
+     */
+    deconnexion(): Observable<void> {
+        return this.http.post<void>(environment.backendUrl + '/logout', {}, httpOptions).pipe(tap(() => this._subConnecte.next(undefined)));
     }
 }
