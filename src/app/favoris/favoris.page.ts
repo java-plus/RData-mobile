@@ -5,11 +5,23 @@ import {MesureMeteo} from '../model/MesureMeteo';
 import {MesurePollution} from '../model/MesurePollution';
 import {zip} from 'rxjs';
 
+/**
+ * interface representant les données du favori qui est actuellement visible par l’utilisateur
+ */
 interface FavorisCourant {
+    /**
+     * ensemble des mesures météo du favori
+     */
     mesureMeteo: MesureMeteo;
+    /**
+     * ensemble des mesures pollution du favori
+     */
     mesurePollution: MesurePollution[];
 }
 
+/**
+ * represente un objet de la liste de favori
+ */
 interface ObjetFavoris {
     favori: Favori;
     expanded: boolean;
@@ -22,9 +34,17 @@ interface ObjetFavoris {
 })
 export class FavorisPage implements OnInit {
 
-
+    /**
+     * liste de favoris
+     */
     listeObjetFavori: ObjetFavoris[] = [];
+    /**
+     * message d’erreur
+     */
     messageError: string;
+    /**
+     * les données du favori actuellement selectionné
+     */
     favoriCourant: FavorisCourant;
 
 
@@ -32,6 +52,9 @@ export class FavorisPage implements OnInit {
     }
 
     ngOnInit() {
+        /**
+         * récuperation des favoris de l’utilisateur courant
+         */
         this.favorisService.recupererFavorisUserConnecte().subscribe((listeFavori) => {
                 this.listeObjetFavori = listeFavori.map((fav) => {
                     return {favori: fav, expanded: false};
@@ -48,10 +71,18 @@ export class FavorisPage implements OnInit {
 
     }
 
+    /**
+     * permet de récuperer les données d’un polluant à partir de son nom
+     * @param nom du polluant
+     */
     recupererMesurePollutionAvecNom(nom: string): MesurePollution {
         return this.favoriCourant.mesurePollution.find(mesureP => mesureP.typeDeDonnee === nom);
     }
 
+    /**
+     * recuperation de l’ensemble des mesures météo et pollution d’une commune
+     * @param codeCommune code d’une commune
+     */
     recupererMesureFavori(codeCommune: string) {
         const mesure: FavorisCourant = {mesureMeteo: undefined, mesurePollution: []};
         zip(this.favorisService.recupererMesuresMeteo(codeCommune), this.favorisService.recupererMesuresPollution(codeCommune))
@@ -62,6 +93,11 @@ export class FavorisPage implements OnInit {
             });
     }
 
+    /**
+     * fonction déclenché lorsque l’on clique sur un favori pour l’ouvrir ou le fermer
+     * et déclenche la récuperation des mesures météo et pollution
+     * @param objetFavori favori selectionné par l’utilisateur
+     */
     expandItem(objetFavori): void {
         this.recupererMesureFavori(objetFavori.favori.commune.codeCommune);
         if (objetFavori.expanded) {
