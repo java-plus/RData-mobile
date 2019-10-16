@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Plugins } from '@capacitor/core';
 
-const { Geolocation } = Plugins;
 
 @Component({
   selector: 'app-meteo',
@@ -14,22 +13,21 @@ export class MeteoPage implements OnInit {
 
   constructor() { }
 
-  lat: number;
-  long: number;
-
+  latitutde: number;
+  longitude: number;
 
   // iconEtatMeteo: string;
   iconEtatMeteo = '11d';
   urlIconMeteo = 'https://openweathermap.org/img/wn/' + this.iconEtatMeteo + '@2x.png';
 
+  urlApiGeoloc = 'https://api-adresse.data.gouv.fr/reverse/?lon=-1.6297237&lat=47.2330368';
+
   getCurrentLocation() {
     Plugins.Geolocation.getCurrentPosition().then(position => {
-      this.lat = position.coords.latitude;
-      this.long = position.coords.longitude;
-      console.log('lat : ', this.lat, ' / long : ', this.long);
+      this.latitutde = position.coords.latitude;
+      this.longitude = position.coords.longitude;
     });
   }
-
 
   ngOnInit() {
     this.getCurrentLocation();
