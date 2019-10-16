@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Plugins } from '@capacitor/core';
 
 
+
 @Component({
   selector: 'app-meteo',
   templateUrl: './meteo.page.html',
