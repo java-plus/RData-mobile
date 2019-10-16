@@ -1,20 +1,27 @@
 <ion-tabs>
 
   <ion-tab-bar slot="bottom">
+
     <ion-tab-button tab="meteo">
-      <ion-icon name="flash"></ion-icon>
+      <ion-icon name="sunny"></ion-icon>
       <ion-label>Météo</ion-label>
     </ion-tab-button>
 
     <ion-tab-button tab="favoris">
-      <ion-icon name="apps"></ion-icon>
+      <ion-icon name="star"></ion-icon>
       <ion-label>Favoris</ion-label>
     </ion-tab-button>
 
     <ion-tab-button tab="notifications">
-      <ion-icon name="send"></ion-icon>
+      <ion-icon name="alert"></ion-icon>
       <ion-label>Notifications</ion-label>
     </ion-tab-button>
+
+    <ion-tab-button (click)="deconnecter()">
+      <ion-icon color="danger" name="log-out"></ion-icon>
+      <ion-label color="danger">Deconnexion</ion-label>
+    </ion-tab-button>
+
   </ion-tab-bar>
 
 </ion-tabs>
