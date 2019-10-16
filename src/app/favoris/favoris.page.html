@@ -35,7 +35,7 @@
                                 <ion-label>Vitesse du vent: {{favoriCourant.mesureMeteo.windSpeed}} Km/h</ion-label>
                             </ion-item>
                             <ion-item *ngIf="objetFavori.favori.windDegrees === true">
-                                <ion-label>orientation du vent: {{favoriCourant.mesureMeteo.windDegrees}} °</ion-label>
+                                <ion-label>Orientation du vent: {{favoriCourant.mesureMeteo.windDegrees}} °</ion-label>
                             </ion-item>
                             <ion-item *ngIf="objetFavori.favori.mesureSO2 === true">
                                 <ion-label>Mesure SO2: {{recupererMesurePollutionAvecNom('SO2').valeur}} µg/m3</ion-label>
@@ -55,34 +55,6 @@
                             <ion-item *ngIf="objetFavori.favori.mesureO3 === true">
                                 <ion-label>Mesure O3: {{recupererMesurePollutionAvecNom('O3').valeur}} µg/m3</ion-label>
                             </ion-item>
-
-
-                            <!-- mesureSO2: boolean;
-  /**
-   * choix d’afficher la mesure de pm25
-   */
-  mesurePM25: boolean;
-  /**
-   * choix d’afficher la mesure de pm10
-   */
-  mesurePM10: boolean;
-  /**
-   * choix d’afficher la mesure d’O3
-   */
-  mesureO3: boolean;
-  /**
-   * choix d’afficher choix d’afficher la mesure de no2
-   */
-  mesureNO2: boolean;
-  /**
-   * choix d’afficher la mesure de Co
-   */
-  mesureCO: boolean;
-  /**
-   * choix d’afficher la population
-   */
-  population: boolean;-->
-
                         </ion-list>
 
 
