@@ -1,9 +1,21 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>notifications</ion-title>
-  </ion-toolbar>
-</ion-header>
-
+<app-header titreHeader="Favoris"></app-header>
 <ion-content>
+  <ion-text *ngIf="messageError" color="primary" class="ion-text-center"> <h3>{{messageError}}</h3></ion-text>
+  <ion-list>
+    <ion-item *ngFor="let objetFavori of listeObjetFavori">
+      <ion-card (click)="expandItem(objetFavori)" >
 
+        <ion-card-header>
+
+        </ion-card-header>
+
+        <ion-card-content>
+          <app-expandable [expanded]="objetFavori.expanded">
+
+
+          </app-expandable>
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+  </ion-list>
 </ion-content>
