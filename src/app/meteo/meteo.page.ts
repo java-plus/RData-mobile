@@ -22,15 +22,20 @@ export class MeteoPage implements OnInit {
 
   urlApiGeoloc = 'https://api-adresse.data.gouv.fr/reverse/?lon=-1.6297237&lat=47.2330368';
 
-  getCurrentLocation() {
+  recuopererGeoLoc() {
     Plugins.Geolocation.getCurrentPosition().then(position => {
       this.latitutde = position.coords.latitude;
       this.longitude = position.coords.longitude;
     });
   }
 
-  ngOnInit() {
-    this.getCurrentLocation();
+  recupererInfosCommune(){
+https://www.youtube.com/watch?v=8pKXR8Y4V00
   }
+  
+
+    ngOnInit() {
+      this.recuopererGeoLoc();
+    }
 
 }
