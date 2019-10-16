@@ -1,22 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
+import { ConnexionGuardService } from '../services/connexion-guard.service';
 
 const routes: Routes = [
+
   {
-    path: 'secure',
-    component: TabsPage,
+    path: '',
+    canActivateChild: [ConnexionGuardService],
     children: [
-      {
-        path: 'meteo',
-        children: [
-          {
-            path: '',
-            loadChildren: () =>
-              import('../meteo/meteo.module').then(m => m.MeteoPageModule)
-          }
-        ]
-      },
+      {path: 'meteo',children: [
+          {path: '',loadChildren: () =>import('../meteo/meteo.module').then(m => m.MeteoPageModule)}
+        ]},
       {
         path: 'favoris',
         children: [
@@ -36,19 +31,10 @@ const routes: Routes = [
               import('../notifications/notifications.module').then(m => m.NotificationsPageModule)
           }
         ]
-      },
-      {
-        path: '',
-        redirectTo: '/secure/meteo',
-        pathMatch: 'full'
       }
     ]
-  },
-  {
-    path: '',
-    redirectTo: '/secure/meteo',
-    pathMatch: 'full'
   }
+  
 ];
 
 @NgModule({

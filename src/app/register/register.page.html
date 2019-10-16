@@ -1,0 +1,64 @@
+
+
+<ion-content>
+
+  <form #form="ngForm" (ngSubmit)="register(form)" [ngFormOptions]="{ updateOn: 'blur'}">
+    <ion-grid>
+      <ion-row color="primary" justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div text-center>
+            <h3>Créer un compte</h3>
+          </div>
+          <div padding>
+            <ion-item>
+              <ion-input name="identifiant" type="text" placeholder="Identifiant" ngModel required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input name="email" type="email" placeholder="Email" #etatEmail="ngModel" ngModel  pattern="^[a-zA-Z0–9]+@[a-zA-Z0–9]+\.[a-z]{2,4}$" required></ion-input>
+            </ion-item>
+            <ion-text color="danger" *ngIf="etatEmail.invalid && etatEmail.dirty"><small>Le format de l'adresse mail doit être du type exemple@exemple.fr(.com)</small></ion-text>
+            <ion-item>
+              <ion-input name="age" type="text" placeholder="Age" #etatAge="ngModel"  ngModel appAgeValidator required></ion-input>
+            </ion-item>
+            <ion-text color="danger" *ngIf="etatAge.invalid && etatAge.dirty"><small>L'age doit contenir uniquement des chiffres et être supérieur ou égal à 18</small></ion-text>
+            
+            <ion-item>
+                <input id="communeInput" placeholder="Commune" type="text" [(ngModel)]="communeRecupere" #etatCommune="ngModel"
+                [inputFormatter]="recupererNomCommune" [resultFormatter]="recupererNomCommune" [ngbTypeahead]="search" name="recuperationCommune" required (blur)="rechercheCorrespondanceCommune(communeRecupere)"/>
+            </ion-item>
+            <ion-text *ngIf="messageErrorCommune" color="danger">{{messageErrorCommune}}</ion-text>
+            
+              
+            
+            <ion-item>
+              <ion-input name="password" type="password" [(ngModel)]="password" placeholder="Password"  #etatPassword="ngModel" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^A-Za-z0-9])(?!.*\s).{8,}$"  ngModel required></ion-input>
+
+              </ion-item>
+              <ion-text class="small" color="danger"  *ngIf="etatPassword.invalid"><small>Le mot de passe doit contenir une majuscule, un caractère spécial, un chiffre et au minimum 8 caractères</small></ion-text>
+              
+              <ion-item>
+                <ion-input name="confirmationPassword" [(ngModel)]="confirmationPassword" type="password" placeholder="confirmation du password"  #etatConfirmationPassword="ngModel"  ngModel required></ion-input>
+  
+                </ion-item> 
+                <ion-text class="small" color="danger" *ngIf="(etatConfirmationPassword.invalid && etatConfirmationPassword.dirty) || confirmationPassword !== password"><small>les deux mots de passes ne correspondent pas</small></ion-text>
+              
+            <ion-text *ngIf="messageError" color="danger">{{messageError}}</ion-text>
+                  
+            
+
+          </div>
+          <div padding>
+            <ion-button size="large"  type="submit" [disabled]="form.invalid" expand="block">Créer mon compte</ion-button>
+          </div>
+          <div padding text-center>
+            <ion-text>Déjà un compte ? <br></ion-text>
+            <a [routerLink]="['/login']">
+              <ion-text>Connectez vous</ion-text>
+            </a>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+
+</ion-content>
