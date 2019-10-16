@@ -67,7 +67,7 @@ export class RegisterPage implements OnInit {
           this.communeRecupere={
             nom:resp[0].code,
             code:resp[0].nom
-          }
+          } 
           this.communeRecupere.code = resp[0].code;
           this.communeRecupere.nom = resp[0].nom;
           console.log(this.communeRecupere)
