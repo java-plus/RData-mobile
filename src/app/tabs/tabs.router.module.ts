@@ -7,6 +7,7 @@ const routes: Routes = [
 
   {
     path: '',
+    component: TabsPage,
     canActivateChild: [ConnexionGuardService],
     children: [
       {path: 'meteo',children: [
