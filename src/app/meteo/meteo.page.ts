@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Plugins } from '@capacitor/core';
+import { MeteoService } from '../services/meteo.service';
+import { GeolocalisationService } from '../services/geolocalisation.service';
+import { LocalisationCommune } from '../model/localisation-commune';
+import { MesureMeteo } from '../model/MesureMeteo';
+import { MesurePollution } from '../model/MesurePollution';
 
 
 
@@ -12,31 +16,41 @@ import { Plugins } from '@capacitor/core';
 
 export class MeteoPage implements OnInit {
 
-  constructor() { }
+  urlIconMeteoBase = 'https://openweathermap.org/img/wn/';
+  iconMeteoDefinition = '@2x.png';
 
-  latitutde: number;
-  longitude: number;
+  nomCommune: string;
+  codePostal: string;
+  urlIconMeteo: string;
 
-  // iconEtatMeteo: string;
-  iconEtatMeteo = '11d';
-  urlIconMeteo = 'https://openweathermap.org/img/wn/' + this.iconEtatMeteo + '@2x.png';
+  mesuresMeteo: MesureMeteo;
+  mesuresPollution: MesurePollution[];
 
-  urlApiGeoloc = 'https://api-adresse.data.gouv.fr/reverse/?lon=-1.6297237&lat=47.2330368';
+  commune: LocalisationCommune;
 
-  recuopererGeoLoc() {
-    Plugins.Geolocation.getCurrentPosition().then(position => {
-      this.latitutde = position.coords.latitude;
-      this.longitude = position.coords.longitude;
-    });
+  constructor(private geolocService: GeolocalisationService, private meteoService: MeteoService) { }
+
+  recupererMesures(codeCommune: string) {
+    this.meteoService.recupererMesuresMeteoEtPollution(codeCommune).subscribe(
+      (result) => {
+        this.urlIconMeteo = `${this.urlIconMeteoBase}${result[0].weatherIcon}${this.iconMeteoDefinition}`;
+        this.mesuresMeteo = result[0];
+        this.mesuresPollution = result[1];
+      }
+    );
   }
 
-  recupererInfosCommune(){
-https://www.youtube.com/watch?v=8pKXR8Y4V00
-  }
-  
 
-    ngOnInit() {
-      this.recuopererGeoLoc();
-    }
+  ngOnInit() {
+    this.geolocService.recupererGeoLocEtCommune().subscribe(
+      (result) => {
+        this.codePostal = result.features[0].properties.postcode;
+        this.nomCommune = result.features[0].properties.city;
+        // this.commune = result;
+        // console.log(this.commune.features[0].properties);
+        this.recupererMesures(result.features[0].properties.citycode);
+      }
+    );
+  }
 
 }

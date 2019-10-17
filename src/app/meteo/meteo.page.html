@@ -4,28 +4,105 @@
 
 <ion-content class="ion-padding">
 
-  <h1>Commune</h1>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div>
+          <ion-img class="pictoMeteo" [src]="urlIconMeteo"></ion-img>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          <h1>{{nomCommune}}</h1>
+          <p>{{mesuresMeteo.weatherDescription}}</p>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-  <ion-img class="pictoMeteo" [src]="urlIconMeteo"></ion-img>
+
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div class="itemMesure">
+          <ion-icon name="thermometer" size="large"></ion-icon>
+          <ion-label color="danger">{{mesuresMeteo.temperature}}°C</ion-label>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div class="itemMesure">
+          <ion-icon name="water" size="large"></ion-icon>
+          <ion-label color="danger">{{mesuresMeteo.humidity}}%</ion-label>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 
   <ion-list>
-
+    <ion-spinner name=" dots">
+    </ion-spinner>
     <ion-list-header>Méteo</ion-list-header>
 
     <ion-item>
-      <ion-label>Temperature</ion-label>
-      <ion-note slot="end" color="danger">99</ion-note>
+      <ion-label>date</ion-label>
+      <ion-note slot="end" color="danger">{{mesuresMeteo.date}}</ion-note>
     </ion-item>
+    <!-- 
+    <ion-item>
+      <ion-label>StationDeMesureMeteo</ion-label>
+      <ion-note slot="end" color="danger">{{mesuresMeteo.stationDeMesureMeteo}}</ion-note>
+    </ion-item> -->
+
+    <ion-item>
+      <div class="itemMesure">
+        <ion-icon name="thermometer" size="large"></ion-icon>
+        <ion-label color="danger">{{mesuresMeteo.temperature}}°C</ion-label>
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <div class="itemMesure">
+        <ion-icon name="water" size="large"></ion-icon>
+        <ion-label color="danger">{{mesuresMeteo.humidity}}%</ion-label>
+      </div>
+    </ion-item>
+    <!-- <ion-item>
+      <ion-label>Humidité</ion-label>
+      <ion-note slot="end" color="danger">{{mesuresMeteo.humidity}} %</ion-note>
+    </ion-item> -->
 
     <ion-item>
       <ion-label>Pression</ion-label>
-      <ion-note slot="end" color="danger">99</ion-note>
+      <ion-note slot="end" color="danger">{{mesuresMeteo.pressure}} hpa</ion-note>
     </ion-item>
 
     <ion-item>
-      <ion-label>Temperature</ion-label>
-      <ion-note slot="end" color="danger">99</ion-note>
+      <ion-label>Température min.</ion-label>
+      <ion-note slot="end" color="danger">{{mesuresMeteo.tempMin}} °C</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Température max.</ion-label>
+      <ion-note slot="end" color="danger">{{mesuresMeteo.tempMax}} °C</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <div class="itemMesure">
+        <ion-icon name="arrow-round-forward" size="large"></ion-icon>
+        <ion-label color="danger">{{mesuresMeteo.windSpeed}} m/s</ion-label>
+      </div>
+    </ion-item>
+    <!--       
+    <ion-item>
+      <ion-label>Vent vitesse</ion-label>
+      <ion-note slot="end" color="danger">{{mesuresMeteo.windSpeed}} m/s</ion-note>
+    </ion-item> -->
+
+    <ion-item>
+      <ion-label>Vent orientation</ion-label>
+      <ion-note slot="end" color="danger">{{mesuresMeteo.windDegrees}}</ion-note>
     </ion-item>
 
   </ion-list>
@@ -34,15 +111,12 @@
 
     <ion-list-header>Pollution</ion-list-header>
 
-    <ion-item>
-      <ion-label>Ozone</ion-label>
-      <ion-note slot="end" color="danger">99</ion-note>
+    <ion-item *ngFor="let mesure of mesuresPollution">
+      <ion-label>{{mesure.typeDeDonnee}}</ion-label>
+      <ion-note slot="end" color="danger">{{mesure.valeur}}</ion-note>
     </ion-item>
 
-    <ion-item>
-      <ion-label>Monoxyde de Carbone</ion-label>
-      <ion-note slot="end" color="danger">99</ion-note>
-    </ion-item>
+
 
   </ion-list>
 
