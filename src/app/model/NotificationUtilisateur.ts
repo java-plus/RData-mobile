@@ -1,34 +1,29 @@
-enum Type {
-    METEO = 'METEO', POLLUTION = 'POLLUTION'
-}
+import {Type} from './Type';
 
 
-export default interface Notification {
-
+export default interface NotificationUtilisateur {
 
 
     /**
-     * id : Integer représente l'id de l'alerte. Cette valeur est créée par
-     * Spring au moment de l'insertion en base de donnée
+     * id représente l'id de l'alerte.
      */
-
     id: number;
     /**
-     * region : String représente la région sélectionné lors de la création de
+     * region représente la région sélectionné lors de la création de
      * l'alerte
      */
     region: string;
     /**
-     * departement : String représente le département sélectionné lors de la
+     * departement représente le département sélectionné lors de la
      * création de l'alerte
      */
     departement: string;
 
     /**
-     * codeCommune : String représente la commune sélectionné lors de la
+     * codeCommune représente la commune sélectionné lors de la
      * création de l'alerte
      */
-codeCommune: string;
+    codeCommune: string;
     /**
      * type représente le type sélectionné lors de la création de
      * l'alerte, ce type est une énumération équivalente à METEO ou POLUUTION
