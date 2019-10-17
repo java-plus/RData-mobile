@@ -6,12 +6,14 @@
       <ion-card (click)="expandItem(objetNotification)" >
 
         <ion-card-header>
-                <ion-card-title><h3>{{objetNotification.notification.type}}</h3></ion-card-title>
+                <ion-card-title><h3>{{objetNotification.notification.type}} | {{objetNotification.notification.dateDebut}} - {{objetNotification.notification.dateFin}}</h3></ion-card-title>
         </ion-card-header>
 
         <ion-card-content>
           <app-expandable [expanded]="objetNotification.expanded">
-
+            <ion-item>
+              <ion-label><span>Message: </span> {{objetNotification.notification.message}} </ion-label>
+            </ion-item>
 
           </app-expandable>
         </ion-card-content>
