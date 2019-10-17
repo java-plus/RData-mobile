@@ -4,6 +4,7 @@ import Commune from './Commune';
  * represente un favori
  */
 export default interface Favori {
+
   /**
    * id du favori
    */
@@ -72,4 +73,9 @@ export default interface Favori {
    * choix d’afficher la mesure de Co
    */
   mesureCO: boolean;
+  /**
+   * choix d’afficher la population
+   */
+  population: boolean;
+
 }
