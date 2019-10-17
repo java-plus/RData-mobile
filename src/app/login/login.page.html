@@ -9,17 +9,18 @@
               </div>
               <div padding>
                 <ion-item>
-                  <ion-input  name="name" type="text" placeholder="Name" ngModel required></ion-input>
+                  <ion-input  name="name" type="text" placeholder="Identifiant" ngModel required></ion-input>
                 </ion-item>
                 <ion-item>
-                  <ion-input name="password" type="password" placeholder="Password" ngModel required></ion-input>
+                  <ion-input name="password" type="password" placeholder="Mot de passe" ngModel required></ion-input>
                 </ion-item>
-                    <ion-text *ngIf="messageError" color="danger">{{messageError}}</ion-text>
-                  
+                  <ion-item *ngIf="messageError" lines="none">
+                    <ion-text class="ion-padding-horizontal ion-text-center" color="danger">{{messageError}}</ion-text>
+                  </ion-item>
                 
               </div>
               <div padding>
-                <ion-button  size="large" type="submit" [disabled]="form.invalid" expand="block">Register</ion-button>
+                <ion-button  size="large" type="submit" [disabled]="form.invalid" expand="block">Se connecter</ion-button>
               </div>
               <div padding text-center>
                   <ion-text>Pas encore de compte ? <br></ion-text>

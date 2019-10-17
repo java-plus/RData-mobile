@@ -13,6 +13,7 @@ import {
   NgbTypeaheadModule
 } from '@ng-bootstrap/ng-bootstrap';
 
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -24,4 +25,4 @@ import {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
