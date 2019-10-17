@@ -6,13 +6,20 @@
       <ion-card (click)="expandItem(objetNotification)" >
 
         <ion-card-header>
-                <ion-card-title><h3>{{objetNotification.notification.type}} | {{objetNotification.notification.dateDebut}} - {{objetNotification.notification.dateFin}}</h3></ion-card-title>
+          <ion-card-title *ngIf="objetNotification.notification.type === 'METEO'"><ion-icon size="large" name="partly-sunny"></ion-icon><ion-text class ="ion-padding-horizontal"> <h4>Alerte météo</h4></ion-text></ion-card-title>
+          <ion-card-title *ngIf="objetNotification.notification.type === 'POLLUTION'"><ion-icon size="large" name="cloud-circle"></ion-icon><ion-text class ="ion-padding-horizontal">  <h4>Alerte pollution</h4></ion-text></ion-card-title>
         </ion-card-header>
 
         <ion-card-content>
           <app-expandable [expanded]="objetNotification.expanded">
             <ion-item>
               <ion-label><span>Message: </span> {{objetNotification.notification.message}} </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label><span>Date de début: </span> {{objetNotification.notification.dateDebut.toLocaleString()}} </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label><span>Date de fin: </span> {{objetNotification.notification.dateFin.toLocaleString()}} </ion-label>
             </ion-item>
 
           </app-expandable>

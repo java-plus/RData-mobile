@@ -60,6 +60,8 @@ recupererNotifications(com: string, dep: string, reg: string) {
         this.notifService.recupererNotifications({region: reg, type: Type.POLLUTION}));
 }
 
+
+
   /**
    * fonction déclenché lorsque l’on clique sur une notification pour l’ouvrir ou le fermer
    * @param objetNotification notification selectionné par l’utilisateur

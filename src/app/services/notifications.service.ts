@@ -4,6 +4,7 @@ import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs';
 import NotificationUtilisateur from '../model/NotificationUtilisateur';
 import {Type} from '../model/Type';
+import {map} from 'rxjs/operators';
 
 
 interface Zone {
@@ -52,6 +53,11 @@ export class NotificationsService {
 
 
     recupererNotifications(notification: Zone): Observable<NotificationUtilisateur[]> {
-        return this.http.post<NotificationUtilisateur[]>(this.URL_BACKEND + '/recupereralertes', notification, this.httpOptions);
+        return this.http.post<NotificationUtilisateur[]>(this.URL_BACKEND + '/recupereralertes', notification, this.httpOptions)
+            .pipe(map(notifList => notifList.map((notif) => {
+                notif.dateDebut = new Date(notif.dateDebut);
+                notif.dateFin = new Date(notif.dateFin);
+                return notif;
+            })) );
     }
 }
