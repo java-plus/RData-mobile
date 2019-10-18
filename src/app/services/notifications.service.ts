@@ -52,6 +52,10 @@ export class NotificationsService {
     }
 
 
+    /**
+     * demande au back les notifications pour une zone
+     * @param notification zone pour laquelle nous voulons récuperer la notification ainsi que son type
+     */
     recupererNotifications(notification: Zone): Observable<NotificationUtilisateur[]> {
         return this.http.post<NotificationUtilisateur[]>(this.URL_BACKEND + '/recupereralertes', notification, this.httpOptions)
             .pipe(map(notifList => notifList.map((notif) => {

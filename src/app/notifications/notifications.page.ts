@@ -25,14 +25,14 @@ export class NotificationsPage implements OnInit {
    * liste de NotificationUtilisateur
    */
   listeNotifications: ObjetNotification[] = [];
-  /**
-   * message d’erreur
-   */
-  messageError: string;
 
   constructor(private geolocService: GeolocalisationService, private notifService: NotificationsService) { }
 
   ngOnInit() {
+    /**
+     * recupere la position gps de l’utilisateur, puis recupere ça commune, son departement puis sa region pour ensuite récuperer les
+     * notifications de ces zones
+     */
     this.geolocService.recupererGeoLocEtCommune().subscribe((infosCommune) => {
       const stringLocalisation = infosCommune.features[0].properties.context.split(',').map(chaine => chaine.trim());
       const commune = infosCommune.features[0].properties.citycode;
@@ -50,7 +50,13 @@ export class NotificationsPage implements OnInit {
     });
   }
 
-recupererNotifications(com: string, dep: string, reg: string) {
+  /**
+   * recupere les notifications de meteo et pollution sur la commune, le departement et la region
+   * @param com code commune de l’utilisateur
+   * @param dep nom du departement de l’utilisateur
+   * @param reg nom de la region de l’utilisateur
+   */
+  recupererNotifications(com: string, dep: string, reg: string) {
 
     return zip(this.notifService.recupererNotifications({codeCommune: com, type: Type.METEO}),
         this.notifService.recupererNotifications({departement: dep, type: Type.METEO}),
