@@ -1,22 +1,55 @@
 .item {
-    overflow: visible;
-    //height: 8rem;
+  overflow: visible;
+  //height: 8rem;
 }
 
 input {
-    height: 100%;
-    border:none;
-    width: 100%;
+  height: 100%;
+  border: none;
+  width: 100%;
 }
 
-::ng-deep .dropdown-item { background:white; border-style: solid; }
+::ng-deep .dropdown-item {
+    background: white;
+    border-style: solid;
+    display: block;
+    font-size: 1rem;
+    padding: 5px 10px;
+    width: 100%;
+    text-align: left;
+}
+
+::ng-deep .dropdown-menu {
+     background-color: white;
+    z-index: 30000;
+    width: 100%;
+    border: 1px solid #d8d8d8;
+    border-radius: 4px;
+    padding: 5px 0 0 0;
+
+}
 
 button {
-    color: white;
+  color: white;
 
-    /* Change the typeahead background color here if you'd like */
-    background-color: Green;
+  /* Change the typeahead background color here if you'd like */
+  background-color: Green;
 
-    /* Turns off the default background gradients */
-    background-image: none;
+  /* Turns off the default background gradients */
+  background-image: none;
+}
+
+
+p{
+    padding: 0 16px;
+    color: #f04141;
+    font-size: 0.75rem;
+}
+
+#communeInput::placeholder{
+    color: #808080;
+}
+
+#communeInput{
+    outline: none;
 }
