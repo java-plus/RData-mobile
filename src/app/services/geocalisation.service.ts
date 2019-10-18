@@ -36,4 +36,6 @@ export class GeolocalisationService {
             return [latitutde, longitude];
         })).pipe(flatMap(([lat, long]) => this.recupererInfosCommune(lat, long)));
     }
+
+
 }

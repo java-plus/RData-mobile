@@ -1,7 +1,7 @@
 <app-header titreHeader="Notifications"></app-header>
 <ion-content>
   <ion-text *ngIf="messageError" color="primary" class="ion-text-center"> <h3>{{messageError}}</h3></ion-text>
-  <ion-list>
+  <ion-list *ngIf="listeNotifications.length>0">
     <ion-item *ngFor="let objetNotification of listeNotifications">
       <ion-card (click)="expandItem(objetNotification)" >
 
