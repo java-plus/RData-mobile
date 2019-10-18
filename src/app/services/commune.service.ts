@@ -51,7 +51,7 @@ export class CommunesService {
     } else {
       return this.http.get<CommuneGeoApi[]>('https://geo.api.gouv.fr/communes?codeRegion=52&fields=code&format=json&geometry=centre', httpOptions)
         .pipe(tap((listCom) => this.listeCommunes = listCom),
-          map((listCom) => listCom.filter((commune) => commune.nom.search(model) >= 0)));
+          map((listCom) => listCom.filter((commune) => commune.nom.toLowerCase().search(model.toLowerCase()) >= 0)));
     }
   }
 

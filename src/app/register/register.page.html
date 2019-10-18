@@ -22,12 +22,7 @@
             </ion-item>
             <ion-text color="danger" *ngIf="etatAge.invalid && etatAge.dirty"><small>L'age doit contenir uniquement des chiffres et être supérieur ou égal à 18</small></ion-text>
             
-            <ion-item>
-                <input id="communeInput" placeholder="Commune" type="text" [(ngModel)]="communeRecupere" #etatCommune="ngModel"
-                [inputFormatter]="recupererNomCommune" [resultFormatter]="recupererNomCommune" [ngbTypeahead]="search" name="recuperationCommune" required (blur)="rechercheCorrespondanceCommune(communeRecupere)"/>
-            </ion-item>
-            <ion-text *ngIf="messageErrorCommune" color="danger">{{messageErrorCommune}}</ion-text>
-            
+           
               
             
             <ion-item>
@@ -44,7 +39,12 @@
               
             <ion-text *ngIf="messageError" color="danger">{{messageError}}</ion-text>
                   
-            
+            <ion-item lines="none">
+              <input autocomplete="new-password" id="communeInput" placeholder="Commune" type="text" [(ngModel)]="communeRecupere" #etatCommune="ngModel"
+              [inputFormatter]="recupererNomCommune" [resultFormatter]="recupererNomCommune" [ngbTypeahead]="search" name="recuperationCommune" required (blur)="rechercheCorrespondanceCommune(communeRecupere)"/>
+          </ion-item>
+          <ion-text *ngIf="messageErrorCommune" color="danger">{{messageErrorCommune}}</ion-text>
+          
 
           </div>
           <div padding>

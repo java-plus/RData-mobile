@@ -1,0 +1,22 @@
+.item {
+    overflow: visible;
+    //height: 8rem;
+}
+
+input {
+    height: 100%;
+    border:none;
+    width: 100%;
+}
+
+::ng-deep .dropdown-item { background:white; border-style: solid; }
+
+button {
+    color: white;
+
+    /* Change the typeahead background color here if you'd like */
+    background-color: Green;
+
+    /* Turns off the default background gradients */
+    background-image: none;
+}

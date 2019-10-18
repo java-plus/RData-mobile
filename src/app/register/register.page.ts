@@ -21,7 +21,7 @@ interface CommuneGeoApi{
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
-  styleUrls: [],
+  styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
 
