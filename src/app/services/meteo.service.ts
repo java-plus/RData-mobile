@@ -18,20 +18,18 @@ export class MeteoService {
 
   constructor(private http: HttpClient) { }
 
+
+  /**
+   * Récupère auprès du back les mesures météo ainsi qu'une liste des mesures de polution, correspondant à la commune passée en paramètre
+   * @param  codeCommune String du code de la commune
+   * @returns Observable<[MesureMeteo, MesurePollution[]]> 
+   */
+
   recupererMesuresMeteoEtPollution(codeCommune: string): Observable<[MesureMeteo, MesurePollution[]]> {
     return zip(
       this.http.get<MesureMeteo>(`${URL_BACKEND}/mesures/meteo?codeCommune=${codeCommune}`, { withCredentials: true }),
       this.http.get<MesurePollution[]>(`${URL_BACKEND}/mesures/pollution?codeCommune=${codeCommune}`, { withCredentials: true })
     );
   }
-
-
-
-
-  // recupererIconEtatMeteo(icon: string) {
-  //   return this.http.get(`${this.urlIconMeteoBase}${icon}${this.iconMeteoDefinition}`);
-  // }
-
-
 
 }

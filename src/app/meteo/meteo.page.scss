@@ -1,16 +1,72 @@
-.pictoMeteo {
-    max-width: 100px;
-    margin: auto;
+$border : 1px solid rgb(207, 207, 207);
+$color-icon : #a9a9a9;
+
+.head > div{
+    display: flex;
+    justify-content: center;   
+    align-items: center;  
 }
 
-.itemMesure {
-    background-color: #d5d6d8;
-    border-radius: 40px;
-    min-width: 80px;
+.subHead {
+    display:flex;
+    justify-content: space-evenly;
+    align-items: stretch;
+    padding: 20px 0;
+    border-top: $border;
+    border-bottom: $border;
+}
+
+.itemPollution:last-child {
+    margin-bottom: 50px;
+}
+
+
+.pictoMeteo {
+    max-width: 100px;
+    
+}
+
+.detailMeteo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.detailMeteo > div{
+    display: flex;
+    align-content: center;
+}
+
+.itemMesure div {
+    display: flex;
+    align-items: center;
+}
+
+.temperature {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.ville {
+    font-size: 1.6rem;
     text-align: center;
-    /* line-height: 1; */
-    min-height: 80px;
-    // --border-style:none;
-    // --border-radius:15px;
-    // --background:green;
+}
+
+.iconCouleurLeger {
+    color:$color-icon;
+}
+
+
+
+.marg {
+    margin-right: 5px;
+    font-size: 18px;
+}
+
+.infoMini {
+    font-size: 0.7rem;
+    letter-spacing: 0.05rem;
+    justify-content: center;
+    border-bottom: $border;
+    padding: 20px 0;
 }
