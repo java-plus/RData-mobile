@@ -61,7 +61,7 @@
 
     <div>
       <ion-list>
-        <ion-list-header>Pollution</ion-list-header>
+
         <ion-item *ngFor="let mesure of mesuresPollution" class="itemPollution">
           <ion-label>{{mesure.typeDeDonnee}}</ion-label>
           <ion-note slot="end" color="primary">{{mesure.valeur}} μg/m3</ion-note>
