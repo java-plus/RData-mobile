@@ -16,6 +16,7 @@ import { MesurePollution } from '../model/MesurePollution';
 
 export class MeteoPage implements OnInit {
 
+
   /**
    * Url des icons de OpenWeatherMap
    */
@@ -30,14 +31,6 @@ export class MeteoPage implements OnInit {
    */
   urlIconMeteo: string;
   /**
-   * Nom de la commune récupérée via gps
-   */
-  nomCommune: string;
-  /**
-   * Code Postal de la commune récupérée via gps
-   */
-  codePostal: string;
-  /**
    * Mesures Méteo de localisation récupérée via gps
    */
   mesuresMeteo: MesureMeteo;
@@ -46,13 +39,13 @@ export class MeteoPage implements OnInit {
    */
   mesuresPollution: MesurePollution[];
   /**
-   * la commune trouvée par l'api de correspondance coordonnée gps -> commune
-   */
-  commune: LocalisationCommune;
-  /**
    * css permettant de faire la rotation de l'icon indiquant la direction du vent en 
    */
-  cssrRotationIcon: string;
+  cssRotationIcon: string;
+  /**
+   * commune telle que récupérée via l'api
+   */
+  commune: LocalisationCommune;
 
   constructor(private geolocService: GeolocalisationService, private meteoService: MeteoService) { }
 
@@ -60,32 +53,32 @@ export class MeteoPage implements OnInit {
    * Récupère toutes mesures pollution et les mesures meteo d'une commune en fonction du code commune passé en paramètre.
    * @param codeCommune String Le code commune de la commune souhaitée
    */
-  recupererMesures(codeCommune: string) {
-    this.meteoService.recupererMesuresMeteoEtPollution(codeCommune).subscribe(
+  recupererMesures(commune: LocalisationCommune) {
+    console.log(commune.features[0].properties.citycode);
+    this.meteoService.recupererMesuresMeteoEtPollution(commune.features[0].properties.citycode).subscribe(
       (result) => {
         this.urlIconMeteo = `${this.urlIconMeteoBase}${result[0].weatherIcon}${this.iconMeteoDefinition}`;
         this.mesuresMeteo = result[0];
-        this.cssrRotationIcon = 'rotate(' + (this.mesuresMeteo.windDegrees + 180).toString() + 'deg)';
+        this.cssRotationIcon = 'rotate(' + (this.mesuresMeteo.windDegrees + 180).toString() + 'deg)';
         this.mesuresPollution = result[1];
       }
     );
   }
 
   /**
-   * Récupére la position actuelle, et lance la méthode pour récupérer les mesures de la localisation 
+   * Récupére la position actuelle, et lance la méthode pour récupérer les mesures de la localisation
    */
   actualiserPosition() {
     this.geolocService.recupererGeoLocEtCommune().subscribe(
       (result) => {
-        this.codePostal = result.features[0].properties.postcode;
-        this.nomCommune = result.features[0].properties.city;
-        this.recupererMesures(result.features[0].properties.citycode);
+        this.commune = result;
+        this.recupererMesures(result);
       }
     );
   }
 
   /**
-   * Lance l'actualisation de la position  à l'initialisation 
+   * Lance l'actualisation de la position  à l'initialisation
    */
   ngOnInit() {
     this.actualiserPosition();

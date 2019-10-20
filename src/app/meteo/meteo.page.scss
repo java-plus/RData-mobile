@@ -70,3 +70,14 @@ $color-icon : #a9a9a9;
     border-bottom: $border;
     padding: 20px 0;
 }
+
+.spinner {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.5rem;
+    
+    color: $color-icon;
+    align-items: center;
+    margin-top: 50%;
+}
+

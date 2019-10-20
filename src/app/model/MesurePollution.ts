@@ -22,7 +22,8 @@ export class MesurePollution {
      * date de la mesure
      */
     public date: string,
-    public stationDeMesure: StationDeMesurePollution) {
+    public stationDeMesure: StationDeMesurePollution
+  ) {
 
   }
 }
