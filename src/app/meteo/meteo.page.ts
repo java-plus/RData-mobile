@@ -54,7 +54,6 @@ export class MeteoPage implements OnInit {
    * @param codeCommune String Le code commune de la commune souhaitée
    */
   recupererMesures(commune: LocalisationCommune) {
-    console.log(commune.features[0].properties.citycode);
     this.meteoService.recupererMesuresMeteoEtPollution(commune.features[0].properties.citycode).subscribe(
       (result) => {
         this.urlIconMeteo = `${this.urlIconMeteoBase}${result[0].weatherIcon}${this.iconMeteoDefinition}`;
