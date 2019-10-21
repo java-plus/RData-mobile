@@ -1,5 +1,8 @@
+@import '../../theme/variables.scss';
+
 $border : 1px solid rgb(207, 207, 207);
 $color-icon : #a9a9a9;
+$color-primary : var(--ion-color-primary);
 
 .head > div{
     display: flex;
@@ -45,6 +48,7 @@ $color-icon : #a9a9a9;
 .temperature {
     font-size: 3rem;
     font-weight: 700;
+    color:$color-primary
 }
 
 .ville {
