@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {GeolocalisationService} from '../services/geocalisation.service';
+import {GeolocalisationService} from '../services/geolocalisation.service';
 import {zip} from 'rxjs';
 import {NotificationsService} from '../services/notifications.service';
 import NotificationUtilisateur from '../model/NotificationUtilisateur';
