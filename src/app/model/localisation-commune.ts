@@ -6,13 +6,11 @@ export interface LocalisationCommune {
     licence: string;
     limit: number;
 }
-
 interface Feature {
     type: string;
     geometry: Geometry;
     properties: Properties;
 }
-
 interface Properties {
     label: string;
     score: number;
@@ -30,8 +28,8 @@ interface Properties {
     street: string;
     distance: number;
 }
-
 interface Geometry {
     type: string;
     coordinates: number[];
 }
+
