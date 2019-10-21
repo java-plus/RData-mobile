@@ -22,7 +22,7 @@ export class MeteoService {
   /**
    * Récupère auprès du back les mesures météo ainsi qu'une liste des mesures de polution, correspondant à la commune passée en paramètre
    * @param  codeCommune String du code de la commune
-   * @returns Observable<[MesureMeteo, MesurePollution[]]> 
+   * @returns Observable<[MesureMeteo, MesurePollution[]]>
    */
 
   recupererMesuresMeteoEtPollution(codeCommune: string): Observable<[MesureMeteo, MesurePollution[]]> {

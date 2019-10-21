@@ -46,6 +46,10 @@ export class MeteoPage implements OnInit {
    * commune telle que récupérée via l'api
    */
   commune: LocalisationCommune;
+  /**
+   * date du relevée de la mesure meteo au format string
+   */
+  dateFormatee: string;
 
   constructor(private geolocService: GeolocalisationService, private meteoService: MeteoService) { }
 
@@ -58,6 +62,7 @@ export class MeteoPage implements OnInit {
       (result) => {
         this.urlIconMeteo = `${this.urlIconMeteoBase}${result[0].weatherIcon}${this.iconMeteoDefinition}`;
         this.mesuresMeteo = result[0];
+        this.dateFormatee = new Date(this.mesuresMeteo.date).toLocaleString();
         this.cssRotationIcon = 'rotate(' + (this.mesuresMeteo.windDegrees + 180).toString() + 'deg)';
         this.mesuresPollution = result[1];
       }
