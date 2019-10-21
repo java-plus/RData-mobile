@@ -46,8 +46,9 @@ export class CommunesService {
    * @param model chaine de caractere qui est recherché
    */
   chercherCommunes(model: string): Observable<CommuneGeoApi[]> {
+
     if (this.listeCommunes) {
-      return of(this.listeCommunes.filter((commune) => commune.nom.search(model) >= 0));
+      return of(this.listeCommunes.filter((commune) => commune.nom.toLowerCase().search(model.toLowerCase()) >= 0));
     } else {
       return this.http.get<CommuneGeoApi[]>('https://geo.api.gouv.fr/communes?codeRegion=52&fields=code&format=json&geometry=centre', httpOptions)
         .pipe(tap((listCom) => this.listeCommunes = listCom),
