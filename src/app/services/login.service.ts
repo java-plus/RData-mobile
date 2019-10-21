@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import {HttpHeaders, HttpClient} from '@angular/common/http';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import Utilisateur from '../model/Utilisateur';
-import {Router} from '@angular/router';
-import {flatMap, tap} from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { flatMap, tap } from 'rxjs/operators';
 
 // Constante de racine url, en local = http://localhost:8080, en prod: https://airdata.cleverapps.io
 const URL_BACKEND = environment.backendUrl;
@@ -75,20 +75,20 @@ export class LoginService {
 
     }
 
-  
 
-  /**
-   * permet de verifier si un utilisateur est connecté et de recuperer ses informations
-   */
-  isLoggedIn(): Observable<Utilisateur> {
-    return this.http.get<Utilisateur>(`${URL_BACKEND}/auth/user`, {withCredentials: true})
-      .pipe(tap((utilisateur) => this._subConnecte.next(utilisateur)));
-  }
 
-  /**
-   * permet de deconnecter l’utilisateur
-   */
-  deconnexion(): Observable<void> {
-    return this.http.post<void>(URL_BACKEND + '/logout', {}, httpOptions).pipe(tap(() => this._subConnecte.next(undefined)));
-  }
+    /**
+     * permet de verifier si un utilisateur est connecté et de recuperer ses informations
+     */
+    isLoggedIn(): Observable<Utilisateur> {
+        return this.http.get<Utilisateur>(`${URL_BACKEND}/auth/user`, { withCredentials: true })
+            .pipe(tap((utilisateur) => this._subConnecte.next(utilisateur)));
+    }
+
+    /**
+     * permet de deconnecter l’utilisateur
+     */
+    deconnexion(): Observable<void> {
+        return this.http.post<void>(URL_BACKEND + '/logout', {}, httpOptions).pipe(tap(() => this._subConnecte.next(undefined)));
+    }
 }

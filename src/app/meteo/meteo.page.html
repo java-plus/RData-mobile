@@ -1,8 +1,92 @@
 <app-header titreHeader="Météo"></app-header>
 
+<ion-content class="ion-padding">
+
+  <ng-container *ngIf="mesuresPollution; else elseBlock">
+
+    <div class="head">
+      <div class="ville">
+        <ion-icon class="marg iconCouleurLeger" name="pin" size="large"></ion-icon>
+        <p>{{commune.features[0].properties.city | uppercase}}</p>
+      </div>
+      <div>
+        <ion-img class="pictoMeteo" [src]="urlIconMeteo"></ion-img>
+        <p>{{mesuresMeteo.weatherDescription}}</p>
+      </div>
+    </div>
 
 
-<ion-content>
+    <div class="subHead">
+
+      <div class="itemMesure">
+        <div class="temperature">{{mesuresMeteo.temperature}}°C
+        </div>
+        <div class="iconCouleurLeger">
+          <div>
+            <ion-icon name="arrow-dropdown" size="large"></ion-icon>
+            <ion-label>{{mesuresMeteo.tempMin}}°C</ion-label>
+          </div>
+          <div>
+            <ion-icon name="arrow-dropup" size="large"></ion-icon>
+            <ion-label>{{mesuresMeteo.tempMax}}°C</ion-label>
+          </div>
+        </div>
+      </div>
+
+      <div class="detailMeteo iconCouleurLeger">
+        <div>
+          <ion-icon class="marg" name="water"></ion-icon>
+          <ion-label>{{mesuresMeteo.humidity}}%</ion-label>
+        </div>
+        <div>
+          <ion-icon class="marg" name="stopwatch"></ion-icon>
+          <ion-label>{{mesuresMeteo.pressure}} hpa</ion-label>
+        </div>
+        <div>
+          <ion-icon class="marg" [ngStyle]="{'transform' : cssRotationIcon}" name="arrow-round-up" size="small">
+          </ion-icon>
+          <ion-label>{{mesuresMeteo.windSpeed}} m/s</ion-label>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="itemMesure">
+      <div class="infoMini">
+        <ion-icon class="marg" name="time"></ion-icon>
+        <ion-label>mesures relevées le : {{dateFormatee}}</ion-label>
+      </div>
+    </div>
+
+
+    <div>
+      <ion-list>
+
+        <ion-item *ngFor="let mesure of mesuresPollution" class="itemPollution">
+          <ion-label>{{mesure.typeDeDonnee}}</ion-label>
+          <ion-note slot="end" color="primary">{{mesure.valeur}} μg/m3</ion-note>
+        </ion-item>
+      </ion-list>
+    </div>
+
+
+
+    <ion-fab horizontal="end" vertical="center" slot="fixed">
+      <ion-fab-button color="primary" (click)="actualiserPosition()">
+        <ion-icon name="locate"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+
+  </ng-container>
+
+  <ng-template #elseBlock>
+    <div class="spinner">
+      <ion-text>chargement</ion-text>
+      <ion-spinner name="dots"></ion-spinner>
+    </div>
+
+  </ng-template>
+
 
 
 </ion-content>

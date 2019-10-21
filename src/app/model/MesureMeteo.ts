@@ -6,53 +6,53 @@ import StationDeMesureMeteo from './StationDeMesureMeteo';
 export class MesureMeteo {
 
   constructor(
-      /**
-       * id de la mesure
-       */
+    /**
+     * id de la mesure
+     */
     public id: string,
-      /**
-       * date de la mesure
-       */
+    /**
+     * date de la mesure
+     */
     public date: Date,
-      /**
-       * station ayant effectué la mesure
-       */
+    /**
+     * station ayant effectué la mesure
+     */
     public stationDeMesureMeteo: StationDeMesureMeteo,
-      /**
-       * description du temps
-       */
+    /**
+     * description du temps
+     */
     public weatherDescription: string,
-      /**
-       * icon representant le temps
-       * ex: http://openweathermap.org/img/wn/10d@2x.png
-       */
+    /**
+     * icon representant le temps
+     * ex: http://openweathermap.org/img/wn/10d@2x.png
+     */
     public weatherIcon: string,
-      /**
-       * temperature
-       */
+    /**
+     * temperature
+     */
     public temperature: number,
-      /**
-       * pression atmosphérique
-       */
+    /**
+     * pression atmosphérique
+     */
     public pressure: number,
-      /**
-       * taux d’humidité
-       */
+    /**
+     * taux d’humidité
+     */
     public humidity: number,
-      /**
-       * temperature minimal du jour
-       */
+    /**
+     * temperature minimal du jour
+     */
     public tempMin: number,
-      /**
-       * temperateur maximal du jour
-       */
+    /**
+     * temperateur maximal du jour
+     */
     public tempMax: number,
-      /**
-       * vitesse du vent
-       */
+    /**
+     * vitesse du vent
+     */
     public windSpeed: number,
-      /**
-       *  orientation du vent
-       */
+    /**
+     *  orientation du vent
+     */
     public windDegrees: number) { }
 }
