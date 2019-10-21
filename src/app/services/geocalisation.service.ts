@@ -30,7 +30,7 @@ export class GeolocalisationService {
      * recupere le code commune, le departement et la region de l’utilisateur à partir de ses coordonnées gps
      */
     recupererGeoLocEtCommune(): Observable<LocalisationCommune> {
-        return from(Plugins.Geolocation.getCurrentPosition().then(position => {
+        return from(Plugins.Geolocation.getCurrentPosition({timeout: 30000}).then(position => {
             const latitutde = position.coords.latitude;
             const longitude = position.coords.longitude;
             return [latitutde, longitude];
