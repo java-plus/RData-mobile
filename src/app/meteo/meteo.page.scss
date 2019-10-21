@@ -1,14 +1,36 @@
 @import '../../theme/variables.scss';
 
 $border : 1px solid rgb(207, 207, 207);
-$color-icon : #a9a9a9;
+$color-icon : #63728c;
 $color-primary : var(--ion-color-primary);
+$couleur-fond: #e3e3e4;
 
-.head > div{
+// .head {
+//     --background:none;
+//     background-color: $couleur-fond;
+// }
+
+ion-content {
+    --background:none;
+    background-image: linear-gradient(to bottom, #63728c, #8b92a7, #b2b5c4, #d9d9e1, #ffffff);
+ //   background-image: linear-gradient(to top, #63728c, #8b92a7, #b2b5c4, #d9d9e1, #ffffff);
+}
+
+ion-list, ion-item {
+    --background: none;
+    background-color: #ffffff00;
+}
+
+// ion-list{
+//     background-color:$couleur-fond;
+// }
+
+.topHead > div{
     display: flex;
     justify-content: center;   
     align-items: center;  
 }
+
 
 .subHead {
     display:flex;
