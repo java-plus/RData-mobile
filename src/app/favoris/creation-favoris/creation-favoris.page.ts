@@ -89,20 +89,20 @@ export class CreationFavorisPage implements OnInit {
         }
     }
 
-  /**
-   * méthode appelé lorsque l’utilisateur clique sur une commune de la liste d’autocompletion. Ferme la liste d’autocompletion, met à jour
-   * la value de la search bar et renseigne le code commune choisi dans creationFavori
-   * @param commune commune sélectionné par l’utilisateur
-   */
-  choixCommune(commune: CommuneGeoApi) {
+    /**
+     * méthode appelé lorsque l’utilisateur clique sur une commune de la liste d’autocompletion. Ferme la liste d’autocompletion, met à jour
+     * la value de la search bar et renseigne le code commune choisi dans creationFavori
+     * @param commune commune sélectionné par l’utilisateur
+     */
+    choixCommune(commune: CommuneGeoApi) {
         this.isItemAvailable = false;
         this.valueSearchBar = commune.nom;
         this.creationFavori.codeCommune = commune.code;
     }
 
-  /**
-   * vérifie qu’au moins une mesure à été sélectionné par l’utilisateur
-   */
+    /**
+     * vérifie qu’au moins une mesure à été sélectionné par l’utilisateur
+     */
     auMoinsUneMesureSeletionnee() {
         return this.creationFavori.population || this.creationFavori.mesureCO || this.creationFavori.mesureNO2
             || this.creationFavori.mesurePM10 || this.creationFavori.mesurePM25 || this.creationFavori.mesureSO2
@@ -112,12 +112,13 @@ export class CreationFavorisPage implements OnInit {
             || this.creationFavori.weatherIcon || this.creationFavori.humidity;
     }
 
-  /**
-   * appelle le service pour enregistrer le favori et redirige vers la page de favori ou affiche le message d’erreur si un problème est
-   * survenu
-   */
-  engistrerFavori() {
+    /**
+     * appelle le service pour enregistrer le favori et redirige vers la page de favori ou affiche le message d’erreur si un problème est
+     * survenu
+     */
+    engistrerFavori() {
         this.favoriService.enregistrerFavori(this.creationFavori).subscribe((favori) => {
+                this.valueSearchBar = '';
                 this.initialisationCreationFavori();
                 this.router.navigate(['/secure/favoris']);
             },

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterContentChecked, AfterViewInit, Component, OnInit} from '@angular/core';
 import {FavorisService} from '../services/favoris.service';
 import Favori from '../model/Favori';
 import {MesureMeteo} from '../model/MesureMeteo';
@@ -33,7 +33,7 @@ interface ObjetFavoris {
     templateUrl: './favoris.page.html',
     styleUrls: ['./favoris.page.scss'],
 })
-export class FavorisPage implements OnInit {
+export class FavorisPage implements OnInit, AfterViewInit {
 
     /**
      * liste de favoris
@@ -70,6 +70,25 @@ export class FavorisPage implements OnInit {
             }
         );
 
+    }
+
+    ngAfterViewInit(): void {
+        /**
+         * récuperation des favoris de l’utilisateur courant
+         */
+        this.favorisService.recupererFavorisUserConnecte().subscribe((listeFavori) => {
+                this.listeObjetFavori = listeFavori.map((fav) => {
+                    return {favori: fav, expanded: false};
+                });
+            }, error => {
+                if (error.status === 500) {
+                    this.listeObjetFavori = [];
+                    this.messageError = 'Vous n’avez pas encore de favoris';
+                } else {
+                    this.messageError = 'Une erreur est survenue lors de la récuperation de vos favoris';
+                }
+            }
+        );
     }
 
     /**
@@ -118,6 +137,16 @@ export class FavorisPage implements OnInit {
             });
         }
     }
+
+    supprimerFavori(objetFavori: ObjetFavoris) {
+        this.favorisService.supprimerFavori(objetFavori.favori.id).subscribe(
+            () => this.listeObjetFavori = this.listeObjetFavori.filter((fav) => fav.favori.id !== objetFavori.favori.id));
+
+    }
+
+
+
+
 }
 
 

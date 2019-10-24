@@ -63,4 +63,12 @@ export class FavorisService {
     enregistrerFavori(creationFavori: CreationFavori): Observable<Favori> {
         return this.http.post<Favori>(`${this.URL_BACKEND}/favoris`, creationFavori, this.httpOptions);
     }
+
+    /**
+     * fait une demande de suppression de favori en back en fonction de son identifiant
+     * @param id id du favori à supprimer
+     */
+    supprimerFavori(id: number) {
+        return this.http.delete<void>(`${this.URL_BACKEND}/favoris/${id}`, this.httpOptions);
+    }
 }
