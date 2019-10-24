@@ -4,6 +4,7 @@ import Favori from '../model/Favori';
 import {MesureMeteo} from '../model/MesureMeteo';
 import {MesurePollution} from '../model/MesurePollution';
 import {zip} from 'rxjs';
+import {Router} from '@angular/router';
 
 /**
  * interface representant les données du favori qui est actuellement visible par l’utilisateur
@@ -48,7 +49,7 @@ export class FavorisPage implements OnInit {
     favoriCourant: FavorisCourant;
 
 
-    constructor(private favorisService: FavorisService) {
+    constructor(private favorisService: FavorisService, private router: Router) {
     }
 
     ngOnInit() {
@@ -91,6 +92,10 @@ export class FavorisPage implements OnInit {
                 mesure.mesurePollution = mesureP;
                 this.favoriCourant = mesure;
             });
+    }
+
+    creerFavori() {
+        this.router.navigate(['/secure/favoris/creation-favoris']);
     }
 
     /**

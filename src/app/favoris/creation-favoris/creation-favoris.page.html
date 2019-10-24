@@ -1,0 +1,92 @@
+<app-header titreHeader="Creation de favori"></app-header>
+<ion-toolbar class="ion-padding-top">
+    <ion-buttons slot="start">
+        <ion-back-button defaultHref="/secure/favoris" text="Retour"></ion-back-button>
+    </ion-buttons>
+    <ion-searchbar (ionInput)="getItems($event)" [(ngModel)]="valueSearchBar"></ion-searchbar>
+</ion-toolbar>
+<ion-list *ngIf="isItemAvailable">
+    <ion-item *ngFor="let item of items" (click)="choixCommune(item)">
+        {{ item.nom }}
+    </ion-item>
+</ion-list>
+<ion-content>
+    <ng-container *ngIf="!isItemAvailable">
+        <ion-list>
+          <ion-item>
+            <ion-title class=" ion-text-left ">Météo</ion-title>
+          </ion-item>
+            <ion-item>
+                <ion-label>Icone météo</ion-label>
+                <ion-toggle slot="end" name="etatMeteo" [(ngModel)]="creationFavori.weatherIcon"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label>Description météo</ion-label>
+                <ion-toggle slot="end" name="etatMeteo" [(ngModel)]="creationFavori.weatherDescription"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label>Temperature</ion-label>
+                <ion-toggle slot="end" name="temperature" [(ngModel)]="creationFavori.temperature"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label>Temperature minimum</ion-label>
+                <ion-toggle slot="end" name="temperatureMinimal" [(ngModel)]="creationFavori.tempMin"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label>Temperature maximum</ion-label>
+                <ion-toggle slot="end" name="temperatureMaximal" [(ngModel)]="creationFavori.tempMax"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label>Humidité</ion-label>
+                <ion-toggle slot="end" name="humidité" [(ngModel)]="creationFavori.humidity"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label>Direction du vent</ion-label>
+                <ion-toggle slot="end" name="directionVent" [(ngModel)]="creationFavori.windDegrees"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label>Vitesse du vent</ion-label>
+                <ion-toggle slot="end" name="vitesseVent" [(ngModel)]="creationFavori.windSpeed"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label>Pression</ion-label>
+                <ion-toggle slot="end" name="pression" [(ngModel)]="creationFavori.pressure"></ion-toggle>
+            </ion-item>
+          <ion-item>
+            <ion-title class=" ion-text-left ">Pollution</ion-title>
+          </ion-item>
+            <ion-item>
+                <ion-label>SO2 (Dioxyde de souffre)</ion-label>
+                <ion-toggle slot="end" name="SO2" [(ngModel)]="creationFavori.mesureSO2"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label>PM2.5 (Particules en suspension)</ion-label>
+                <ion-toggle slot="end" name="PM25" [(ngModel)]="creationFavori.mesurePM25"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label>PM10 (Particules en suspension)</ion-label>
+                <ion-toggle slot="end" name="PM10" [(ngModel)]="creationFavori.mesurePM10"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label>NO2 (Dioxyde d’azote)</ion-label>
+                <ion-toggle slot="end" name="NO2" [(ngModel)]="creationFavori.mesureNO2"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label>CO (Monoxyde de carbone)</ion-label>
+                <ion-toggle slot="end" name="CO" [(ngModel)]="creationFavori.mesureCO"></ion-toggle>
+            </ion-item>
+          <ion-item>
+            <ion-title class=" ion-text-left ">Autre</ion-title>
+          </ion-item>
+            <ion-item>
+                <ion-label>Population</ion-label>
+                <ion-toggle slot="end" name="population" [(ngModel)]="creationFavori.population"></ion-toggle>
+            </ion-item>
+        </ion-list>
+        <ion-button expand="block" [disabled]="(!creationFavori.codeCommune) || !auMoinsUneMesureSeletionnee()" (click)="engistrerFavori()">
+            Enregistrer
+        </ion-button>
+      <ion-title color="danger" *ngIf="messageErreur">{{messageErreur}}</ion-title>
+    </ng-container>
+</ion-content>
+
