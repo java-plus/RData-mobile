@@ -1,11 +1,12 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import Favori from '../model/Favori';
 import {environment} from '../../environments/environment';
 import {MesureMeteo} from '../model/MesureMeteo';
 import {MesurePollution} from '../model/MesurePollution';
 import CreationFavori from '../model/CreationFavori';
+import {tap} from 'rxjs/operators';
 
 
 @Injectable({
@@ -21,8 +22,13 @@ export class FavorisService {
         }),
         withCredentials: true
     };
+    private _favoriSub: Subject<Favori> = new Subject();
 
     constructor(private http: HttpClient) {
+    }
+
+    get favoriSub() {
+        return this._favoriSub.asObservable();
     }
 
     /**
@@ -61,7 +67,8 @@ export class FavorisService {
      * @param creationFavori favori qui doit être enregistrer
      */
     enregistrerFavori(creationFavori: CreationFavori): Observable<Favori> {
-        return this.http.post<Favori>(`${this.URL_BACKEND}/favoris`, creationFavori, this.httpOptions);
+        return this.http.post<Favori>(`${this.URL_BACKEND}/favoris`, creationFavori, this.httpOptions)
+            .pipe(tap(fav => this._favoriSub.next(fav)));
     }
 
     /**

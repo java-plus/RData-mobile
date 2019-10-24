@@ -1,9 +1,9 @@
-import {AfterContentChecked, AfterViewInit, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FavorisService} from '../services/favoris.service';
 import Favori from '../model/Favori';
 import {MesureMeteo} from '../model/MesureMeteo';
 import {MesurePollution} from '../model/MesurePollution';
-import {zip} from 'rxjs';
+import {Subscription, zip} from 'rxjs';
 import {Router} from '@angular/router';
 
 /**
@@ -33,7 +33,7 @@ interface ObjetFavoris {
     templateUrl: './favoris.page.html',
     styleUrls: ['./favoris.page.scss'],
 })
-export class FavorisPage implements OnInit, AfterViewInit {
+export class FavorisPage implements OnInit {
 
     /**
      * liste de favoris
@@ -48,11 +48,24 @@ export class FavorisPage implements OnInit, AfterViewInit {
      */
     favoriCourant: FavorisCourant;
 
+    /**
+     * subject transferant les favoris
+     */
+    favoriSub: Subscription;
+
 
     constructor(private favorisService: FavorisService, private router: Router) {
     }
 
     ngOnInit() {
+        this.favoriSub = this.favorisService.favoriSub.subscribe(fav => {
+            this.listeObjetFavori.push({
+                    favori: fav,
+                    expanded: false
+                });
+            console.log(fav);
+        });
+
         /**
          * récuperation des favoris de l’utilisateur courant
          */
@@ -72,24 +85,6 @@ export class FavorisPage implements OnInit, AfterViewInit {
 
     }
 
-    ngAfterViewInit(): void {
-        /**
-         * récuperation des favoris de l’utilisateur courant
-         */
-        this.favorisService.recupererFavorisUserConnecte().subscribe((listeFavori) => {
-                this.listeObjetFavori = listeFavori.map((fav) => {
-                    return {favori: fav, expanded: false};
-                });
-            }, error => {
-                if (error.status === 500) {
-                    this.listeObjetFavori = [];
-                    this.messageError = 'Vous n’avez pas encore de favoris';
-                } else {
-                    this.messageError = 'Une erreur est survenue lors de la récuperation de vos favoris';
-                }
-            }
-        );
-    }
 
     /**
      * permet de récuperer les données d’un polluant à partir de son nom
@@ -113,6 +108,9 @@ export class FavorisPage implements OnInit, AfterViewInit {
             });
     }
 
+    /**
+     * redirige vers la page de creation de favori
+     */
     creerFavori() {
         this.router.navigate(['/secure/favoris/creation-favoris']);
     }
@@ -138,13 +136,15 @@ export class FavorisPage implements OnInit, AfterViewInit {
         }
     }
 
+    /**
+     * fait une demande de supression de favori
+     * @param objetFavori favori selectionné
+     */
     supprimerFavori(objetFavori: ObjetFavoris) {
         this.favorisService.supprimerFavori(objetFavori.favori.id).subscribe(
             () => this.listeObjetFavori = this.listeObjetFavori.filter((fav) => fav.favori.id !== objetFavori.favori.id));
 
     }
-
-
 
 
 }
