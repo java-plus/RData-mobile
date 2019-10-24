@@ -24,11 +24,11 @@ export class CreationFavorisPage implements OnInit {
     /**
      * indique si la liste d’autocompletion est affiché ou non
      */
-    private isItemAvailable: boolean;
+    isItemAvailable: boolean;
     /**
      * represente la liste des communes présentes dans l’autocompletion
      */
-    private items: CommuneGeoApi[];
+   items: CommuneGeoApi[];
     /**
      * correspond à la value de la searchBar
      */
