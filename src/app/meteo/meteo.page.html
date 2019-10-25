@@ -87,7 +87,7 @@
           </div>
         </div>
 
-        <div [class.show]="listIsVisible[i]" class="infos">
+        <div [ngClass]="{'show': listIsVisible[i], 'noshow': !listIsVisible[i] }" class="infos">
 
           <div class="echelle">
             <div [style.left]="mesure.cssPositionFleche +'%'" class="fleche"></div>

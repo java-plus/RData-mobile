@@ -72,10 +72,11 @@ export class MeteoPage implements OnInit {
 
 
   /**
-   *
-   *
-   * @param {MesurePollution[]} mesures
-   * @memberof MeteoPage
+   * Creer la liste de mesurePollutionDto depuis la liste de mesures de pollution passée en paramètre.
+   * Tranfert certains attribut sans modifications, mais effectue certaines modifications 
+   * (comme par exemple : supprime les décimales des valeurs des températures), et renseigne des attributs destinés à l'affiche html 
+   * en fonction des valeurs de pollution (comme par exemple : couleur en fonction de la valeur de chaque polluant, texte de description...)
+   * @param {MesurePollution[]} mesures une liste de mesures de pollutions ( MesurePollution[] )
    */
   mesuresPollutionAffinage(mesures: MesurePollution[]) {
     const couleurInvalid = '#A9A9A9';
@@ -128,7 +129,10 @@ export class MeteoPage implements OnInit {
           }
         }
       }
-
+      /*
+      traitement ci-dessous, calculant la valeur de la propriété css 'left' qui sera utilisée 
+      pour placer la flèche de la valeur du polluant sur l'echelle
+      */
       if (element.valeur <= 0) {
         positionCss = 0;
       } else if (indiceDanger === 5) {
@@ -190,14 +194,19 @@ export class MeteoPage implements OnInit {
   }
 
 
+  /**
+   * modifie la class css de l'element qui déclenche la méthode
+   * @param {number} num
+   */
   toggleInfos(num: number) {
-    console.log(num);
+    console.log('visi avant= ', this.listIsVisible[num]);
     for (let index = 0; index < this.listIsVisible.length; index++) {
-      if (this.listIsVisible[index] === true) {
+      if (this.listIsVisible[index] === true && index !== num) {
         this.listIsVisible[index] = false;
       }
     }
     this.listIsVisible[num] = !this.listIsVisible[num];
+    console.log('visi apres= ', this.listIsVisible[num]);
   }
 
 

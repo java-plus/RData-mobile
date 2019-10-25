@@ -203,6 +203,11 @@ ion-list, ion-item {
     display: block;
 }
 
+.noshow {
+    height: 0px;
+    display: block;
+}
+
 
 .pictoMeteo {
     max-width: 100px;
