@@ -27,6 +27,10 @@ export class MesurePollutionDto extends MesurePollution {
      * texte descriptif du polluant
      */
     description: string;
+    /**
+     * number qui sert à positionner en via css la fleche sur l'echelle
+     */
+    cssPositionFleche: number;
 
     constructor(
         id: string,
@@ -38,7 +42,8 @@ export class MesurePollutionDto extends MesurePollution {
         indiceDanger: number,
         indiceCouleur: string,
         uniteMesure: string,
-        echelle: number[]
+        echelle: number[],
+        cssPositionFleche: number
     ) {
         super(id, valeur, typeDeDonnee, date, stationDeMesure);
         this.texteSymbole = texteSymbole;
@@ -46,5 +51,6 @@ export class MesurePollutionDto extends MesurePollution {
         this.indiceCouleur = indiceCouleur;
         this.uniteMesure = uniteMesure;
         this.echelle = echelle;
+        this.cssPositionFleche = cssPositionFleche;
     }
 }

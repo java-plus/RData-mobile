@@ -3,7 +3,7 @@
 <ion-content>
 
 
-  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+  <ion-refresher slot="fixed" (ionRefresh)="actualiserPosition($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
@@ -90,7 +90,7 @@
         <div [class.show]="listIsVisible[i]" class="infos">
 
           <div class="echelle">
-            <div class="fleche"></div>
+            <div [style.left]="mesure.cssPositionFleche +'%'" class="fleche"></div>
             <div>
               <div class="couleur0"></div>
               <div>0</div>
@@ -114,18 +114,12 @@
 
           </div>
 
-          <!-- 
-          <div class="couleurInvalid valeur">
-            non valide
-          </div> -->
 
 
         </div>
       </div>
 
     </div>
-
-
 
 
 

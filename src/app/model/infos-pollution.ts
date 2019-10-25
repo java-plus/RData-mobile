@@ -1,7 +1,15 @@
+export interface Mesure {
+    unite: string;
+    description: string;
+    nom: string;
+    symbole: string;
+    echelle: number[];
+}
+
 export class InfosPollution {
 
 
-    SO2: object = {
+    SO2: Mesure = {
         unite: 'µg/m3',
         description: '',
         nom: 'Dioxyde de Souffre',
@@ -9,7 +17,7 @@ export class InfosPollution {
         echelle: [100, 200, 350, 500]
     };
 
-    PM10: object = {
+    PM10: Mesure = {
         unite: 'µg/m3',
         description: '',
         nom: 'Particules en suspension (⌀ < 10μm)',
@@ -17,7 +25,7 @@ export class InfosPollution {
         echelle: [20, 40, 50, 75]
     };
 
-    PM25: object = {
+    PM25: Mesure = {
         unite: 'µg/m3',
         description: '',
         nom: 'Particules en suspension (⌀ < 2.5μm)',
@@ -25,7 +33,7 @@ export class InfosPollution {
         echelle: [10, 20, 25, 50]
     };
 
-    CO: object = {
+    CO: Mesure = {
         unite: 'µg/m3',
         description: '',
         nom: 'Monoxyde de Carbone',
@@ -33,7 +41,7 @@ export class InfosPollution {
         echelle: [5, 10, 25, 50],
     };
 
-    O3: object = {
+    O3: Mesure = {
         unite: 'µg/m3',
         description: '',
         nom: 'Ozone',
@@ -41,7 +49,7 @@ export class InfosPollution {
         echelle: [80, 120, 180, 240]
     };
 
-    NO2: object = {
+    NO2: Mesure = {
         unite: 'µg/m3',
         description: '',
         nom: `Dioxyde d'azote`,

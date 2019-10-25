@@ -123,7 +123,7 @@ ion-list, ion-item {
 .infos {
     font-size: 0.8rem;;
     overflow: hidden;
-    margin : 0 16px;
+    padding : 0 16px;
     transition: all 0.2s ease-out;
     height: 0;
     display: none;
@@ -135,6 +135,7 @@ ion-list, ion-item {
     box-shadow: 2px 2px 0px 0px white;
     width: 0px;
     top: -15px;
+    margin-left: -10px;
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
     border-radius: 50% 50% 0% 50%;

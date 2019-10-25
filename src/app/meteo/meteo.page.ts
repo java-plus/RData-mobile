@@ -5,7 +5,7 @@ import { LocalisationCommune } from '../model/localisation-commune';
 import { MesureMeteo } from '../model/MesureMeteo';
 import { MesurePollution } from '../model/MesurePollution';
 import { MesurePollutionDto } from '../model/mesure-pollution-dto';
-import { InfosPollution } from '../model/infos-pollution';
+import { InfosPollution, Mesure } from '../model/infos-pollution';
 
 
 
@@ -71,6 +71,12 @@ export class MeteoPage implements OnInit {
   listeMesurePollutionDto: MesurePollutionDto[] = [];
 
 
+  /**
+   *
+   *
+   * @param {MesurePollution[]} mesures
+   * @memberof MeteoPage
+   */
   mesuresPollutionAffinage(mesures: MesurePollution[]) {
     const couleurInvalid = '#A9A9A9';
     const couleur0 = '#005500';
@@ -78,7 +84,6 @@ export class MeteoPage implements OnInit {
     const couleur2 = '#FFAA00';
     const couleur3 = '#FF5500';
     const couleur4 = '#AA0000';
-
 
     mesures.forEach(element => {
 
@@ -89,185 +94,53 @@ export class MeteoPage implements OnInit {
       let indiceCouleur = '';
       let uniteMesure = '';
       let echelle = [];
+      let positionCss = 0;
 
-      if (element.typeDeDonnee === 'SO2') {
+      let infosPollution: Mesure;
 
-
-
-        console.log(this.infosPollution);
-        typeDonneeTexte = this.infosPollution.SO2.nom;
-        uniteMesure = this.infosPollution.SO2.unite;
-        echelle = this.infosPollution.SO2.echelle;
-
-        if (element.valeur <= 0) {
-          indiceDanger = 0;
-          indiceCouleur = 'couleurInvalid';
-        } else if (element.valeur > 0 && element.valeur <= 100) {
-          indiceDanger = 0;
-          indiceCouleur = 'couleur0';
-        } else if (element.valeur > 100 && element.valeur <= 200) {
-          indiceDanger = 1;
-          indiceCouleur = 'couleur1';
-        } else if (element.valeur > 200 && element.valeur <= 350) {
-          indiceDanger = 2;
-          indiceCouleur = 'couleur2';
-        } else if (element.valeur > 350 && element.valeur <= 500) {
-          indiceDanger = 3;
-          indiceCouleur = 'couleur3';
-        } else if (element.valeur > 500) {
-          indiceDanger = 4;
-          indiceCouleur = 'couleur4';
-        }
-
-
-
-
-      } else if (element.typeDeDonnee === 'CO') {
-
-        typeDonneeTexte = this.infosPollution.CO.nom;
-        uniteMesure = this.infosPollution.CO.unite;
-        echelle = this.infosPollution.CO.echelle;
-
-
-
-        if (element.valeur <= 0) {
-          indiceDanger = 0;
-          indiceCouleur = 'couleurInvalid';
-        } else if (element.valeur > 0 && element.valeur <= 5) {
-          indiceDanger = 0;
-          indiceCouleur = 'couleur0';
-        } else if (element.valeur > 5 && element.valeur <= 10) {
-          indiceDanger = 1;
-          indiceCouleur = 'couleur1';
-        } else if (element.valeur > 10 && element.valeur <= 25) {
-          indiceDanger = 2;
-          indiceCouleur = 'couleur2';
-        } else if (element.valeur > 25 && element.valeur <= 50) {
-          indiceDanger = 3;
-          indiceCouleur = 'couleur3';
-        } else if (element.valeur > 50) {
-          indiceDanger = 4;
-          indiceCouleur = 'couleur4';
-        }
-
-
-
-
-      } else if (element.typeDeDonnee === 'PM2.5') {
-
-        typeDonneeTexte = this.infosPollution.PM25.nom;
-        uniteMesure = this.infosPollution.PM25.unite;
-        echelle = this.infosPollution.PM25.echelle;
-
-
-        if (element.valeur <= 0) {
-          indiceDanger = 0;
-          indiceCouleur = 'couleurInvalid';
-        } else if (element.valeur > 0 && element.valeur <= 100) {
-          indiceDanger = 0;
-          indiceCouleur = 'couleur0';
-        } else if (element.valeur > 100 && element.valeur <= 200) {
-          indiceDanger = 1;
-          indiceCouleur = 'couleur1';
-        } else if (element.valeur > 200 && element.valeur <= 350) {
-          indiceDanger = 2;
-          indiceCouleur = 'couleur2';
-        } else if (element.valeur > 350 && element.valeur <= 500) {
-          indiceDanger = 3;
-          indiceCouleur = 'couleur3';
-        } else if (element.valeur > 500) {
-          indiceDanger = 4;
-          indiceCouleur = 'couleur4';
-        }
-
-      } else if (element.typeDeDonnee === 'PM10') {
-
-        typeDonneeTexte = this.infosPollution.PM10.nom;
-        uniteMesure = this.infosPollution.PM10.unite;
-        echelle = this.infosPollution.PM10.echelle;
-
-
-        if (element.valeur <= 0) {
-          indiceDanger = 0;
-          indiceCouleur = 'couleurInvalid';
-        } else if (element.valeur > 0 && element.valeur <= 35) {
-          indiceDanger = 0;
-          indiceCouleur = 'couleur0';
-        } else if (element.valeur > 35 && element.valeur <= 60) {
-          indiceDanger = 1;
-          indiceCouleur = 'couleur1';
-        } else if (element.valeur > 60 && element.valeur <= 90) {
-          indiceDanger = 2;
-          indiceCouleur = 'couleur2';
-        } else if (element.valeur > 90 && element.valeur <= 180) {
-          indiceDanger = 3;
-          indiceCouleur = 'couleur3';
-        } else if (element.valeur > 180) {
-          indiceDanger = 4;
-          indiceCouleur = 'couleur4';
-        }
-
-
-      } else if (element.typeDeDonnee === 'O3') {
-
-        typeDonneeTexte = this.infosPollution.O3.nom;
-        uniteMesure = this.infosPollution.O3.unite;
-        echelle = this.infosPollution.O3.echelle;
-
-
-        if (element.valeur <= 0) {
-          indiceDanger = 0;
-          indiceCouleur = 'couleurInvalid';
-        } else if (element.valeur > 0 && element.valeur <= 80) {
-          indiceDanger = 0;
-          indiceCouleur = 'couleur0';
-        } else if (element.valeur > 80 && element.valeur <= 120) {
-          indiceDanger = 1;
-          indiceCouleur = 'couleur1';
-        } else if (element.valeur > 120 && element.valeur <= 180) {
-          indiceDanger = 2;
-          indiceCouleur = 'couleur2';
-        } else if (element.valeur > 180 && element.valeur <= 240) {
-          indiceDanger = 3;
-          indiceCouleur = 'couleur3';
-        } else if (element.valeur > 240) {
-          indiceDanger = 4;
-          indiceCouleur = 'couleur4';
-        }
-
+      if (element.typeDeDonnee === 'CO') {
+        infosPollution = this.infosPollution.CO;
       } else if (element.typeDeDonnee === 'NO2') {
-
-
-        typeDonneeTexte = this.infosPollution.NO2.nom;
-        uniteMesure = this.infosPollution.NO2.unite;
-        echelle = this.infosPollution.NO2.echelle;
-
-
-        if (element.valeur <= 0) {
-          indiceDanger = 0;
-          indiceCouleur = 'couleurInvalid';
-        } else if (element.valeur > 0 && element.valeur <= 40) {
-          indiceDanger = 0;
-          indiceCouleur = 'couleur0';
-        } else if (element.valeur > 40 && element.valeur <= 100) {
-          indiceDanger = 1;
-          indiceCouleur = 'couleur1';
-        } else if (element.valeur > 100 && element.valeur <= 200) {
-          indiceDanger = 2;
-          indiceCouleur = 'couleur2';
-        } else if (element.valeur > 200 && element.valeur <= 400) {
-          indiceDanger = 3;
-          indiceCouleur = 'couleur3';
-        } else if (element.valeur > 400) {
-          indiceDanger = 4;
-          indiceCouleur = 'couleur4';
-        }
-
+        infosPollution = this.infosPollution.NO2;
+      } else if (element.typeDeDonnee === 'O3') {
+        infosPollution = this.infosPollution.O3;
+      } else if (element.typeDeDonnee === 'PM10') {
+        infosPollution = this.infosPollution.PM10;
+      } else if (element.typeDeDonnee === 'PM2.5') {
+        infosPollution = this.infosPollution.PM25;
+      } else if (element.typeDeDonnee === 'SO2') {
+        infosPollution = this.infosPollution.SO2;
       }
 
+      typeDonneeTexte = infosPollution.nom;
+      uniteMesure = infosPollution.unite;
+      echelle = infosPollution.echelle;
 
+      if (element.valeur <= 0) {
+        indiceDanger = 0;
+        indiceCouleur = 'couleurInvalid';
+      } else {
+        for (let index = 0; index < echelle.length; index++) {
+          if (element.valeur <= echelle[index]) {
+            indiceDanger = index;
+            indiceCouleur = 'couleur' + indiceDanger.toString();
+            break;
+          }
+        }
+      }
 
-      const mesurePollutionDto = new MesurePollutionDto(element.id, element.valeur, element.typeDeDonnee, element.date, element.stationDeMesure, typeDonneeTexte, indiceDanger, indiceCouleur, uniteMesure, echelle);
+      if (element.valeur <= 0) {
+        positionCss = 0;
+      } else if (indiceDanger === 5) {
+        positionCss = 90;
+      } else {
+        const positionDeDepart = indiceDanger * 20;
+        const max = echelle[indiceDanger];
+        const calc = (element.valeur * 20) / max;
+        positionCss = positionDeDepart + calc;
+      }
+
+      const mesurePollutionDto = new MesurePollutionDto(element.id, element.valeur, element.typeDeDonnee, element.date, element.stationDeMesure, typeDonneeTexte, indiceDanger, indiceCouleur, uniteMesure, echelle, positionCss);
       this.listeMesurePollutionDto.push(mesurePollutionDto);
     });
 
@@ -292,7 +165,6 @@ export class MeteoPage implements OnInit {
         this.mesuresMeteo.temperature = Math.trunc(this.mesuresMeteo.temperature);
         this.mesuresMeteo.tempMax = Math.trunc(this.mesuresMeteo.tempMax);
         this.mesuresMeteo.tempMin = Math.trunc(this.mesuresMeteo.tempMin);
-        console.log(this.mesuresMeteo.temperature);
       }
     );
   }
@@ -300,11 +172,18 @@ export class MeteoPage implements OnInit {
   /**
    * Récupére la position actuelle, et lance la méthode pour récupérer les mesures de la localisation
    */
-  actualiserPosition() {
+  actualiserPosition(event: any) {
+
     this.geolocService.recupererGeoLocEtCommune().subscribe(
       (result) => {
         this.commune = result;
         this.recupererMesures(result);
+        if (event !== null) {
+          setTimeout(() => {
+            event.target.complete();
+          }, 1000);
+        }
+
       },
       (error) => this.messageErreur = 'Impossible de vous geolocaliser'
     );
@@ -312,29 +191,22 @@ export class MeteoPage implements OnInit {
 
 
   toggleInfos(num: number) {
+    console.log(num);
     for (let index = 0; index < this.listIsVisible.length; index++) {
       if (this.listIsVisible[index] === true) {
         this.listIsVisible[index] = false;
       }
-
     }
     this.listIsVisible[num] = !this.listIsVisible[num];
   }
 
 
-  doRefresh(event) {
-    console.log('Begin async operation');
 
-    setTimeout(() => {
-      console.log('Async operation has ended');
-      event.target.complete();
-    }, 2000);
-  }
   /**
    * Lance l'actualisation de la position  à l'initialisation
    */
   ngOnInit() {
-    this.actualiserPosition();
+    this.actualiserPosition(null);
   }
 
 }
