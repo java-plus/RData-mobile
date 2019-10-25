@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
         <ion-back-button defaultHref="/secure/favoris" text="Retour"></ion-back-button>
     </ion-buttons>
-    <ion-searchbar (ionInput)="getItems($event)" [(ngModel)]="valueSearchBar"></ion-searchbar>
+    <ion-searchbar (ionClear)="clear()" (ionInput)="getItems($event)" placeholder="Commune" [(ngModel)]="valueSearchBar"></ion-searchbar>
 </ion-toolbar>
 <ion-list *ngIf="isItemAvailable">
     <ion-item *ngFor="let item of items" (click)="choixCommune(item)">
@@ -14,7 +14,7 @@
     <ng-container *ngIf="!isItemAvailable">
         <ion-list>
           <ion-item>
-            <ion-title class=" ion-text-left ">Météo</ion-title>
+            <ion-title class=" ion-text-left ">Météo (choisissez les mesures du favori)</ion-title>
           </ion-item>
             <ion-item>
                 <ion-label>Icone météo</ion-label>
@@ -53,7 +53,7 @@
                 <ion-toggle slot="end" name="pression" [(ngModel)]="creationFavori.pressure"></ion-toggle>
             </ion-item>
           <ion-item>
-            <ion-title class=" ion-text-left ">Pollution</ion-title>
+            <ion-title class=" ion-text-left ">Pollution (choisissez les mesures du favori)</ion-title>
           </ion-item>
             <ion-item>
                 <ion-label>SO2 (Dioxyde de souffre)</ion-label>
@@ -75,11 +75,15 @@
                 <ion-label>CO (Monoxyde de carbone)</ion-label>
                 <ion-toggle slot="end" name="CO" [(ngModel)]="creationFavori.mesureCO"></ion-toggle>
             </ion-item>
+            <ion-item>
+                <ion-label>O3 (Ozone)</ion-label>
+                <ion-toggle slot="end" name="O3" [(ngModel)]="creationFavori.mesureO3"></ion-toggle>
+            </ion-item>
           <ion-item>
-            <ion-title class=" ion-text-left ">Autre</ion-title>
+            <ion-title class=" ion-text-left ">Autre (choisissez les mesures du favori)</ion-title>
           </ion-item>
             <ion-item>
-                <ion-label>Population</ion-label>
+                <ion-label>Population </ion-label>
                 <ion-toggle slot="end" name="population" [(ngModel)]="creationFavori.population"></ion-toggle>
             </ion-item>
         </ion-list>

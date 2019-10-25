@@ -37,7 +37,8 @@
                                 <ion-label><span>Vitesse du vent:</span></ion-label><ion-note slot="end" color="dark"> {{favoriCourant.mesureMeteo.windSpeed}} Km/h</ion-note>
                             </ion-item>
                             <ion-item *ngIf="objetFavori.favori.windDegrees === true">
-                                <ion-label><span>Orientation du vent:</span> </ion-label><ion-note slot="end" color="dark">{{favoriCourant.mesureMeteo.windDegrees}} °</ion-note>
+                                <ion-label><span>Orientation du vent:</span> </ion-label><ion-icon slot="end" [ngStyle]="{'transform' : cssRotationIcon}" name="arrow-round-up" ></ion-icon>
+
                             </ion-item>
                             <ion-item *ngIf="objetFavori.favori.mesureSO2 === true">
                                 <ion-label><span>Mesure SO2:</span> </ion-label><ion-note slot="end" color="dark">{{recupererMesurePollutionAvecNom('SO2').valeur}} µg/m3</ion-note>
