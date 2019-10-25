@@ -124,4 +124,11 @@ export class CreationFavorisPage implements OnInit {
             },
             (err) => this.messageErreur = 'Une erreur est survenue lors de la création du favori.');
     }
+
+    /**
+     * cache la liste d’autocompletion lorsque l’on clear la searchBar
+     */
+    clear() {
+        this.isItemAvailable = false;
+    }
 }

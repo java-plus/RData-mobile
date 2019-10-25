@@ -47,6 +47,10 @@ export class FavorisPage implements OnInit {
      * les données du favori actuellement selectionné
      */
     favoriCourant: FavorisCourant;
+    /**
+     * css permettant de faire la rotation de l'icon indiquant la direction du vent en
+     */
+    cssRotationIcon: string;
 
     /**
      * subject transferant les favoris
@@ -105,6 +109,8 @@ export class FavorisPage implements OnInit {
                 mesure.mesureMeteo = mesureM;
                 mesure.mesurePollution = mesureP;
                 this.favoriCourant = mesure;
+                this.cssRotationIcon = 'rotate(' + (this.favoriCourant.mesureMeteo.windDegrees + 180).toString() + 'deg)';
+
             });
     }
 
