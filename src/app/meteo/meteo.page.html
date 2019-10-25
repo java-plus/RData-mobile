@@ -2,6 +2,16 @@
 
 <ion-content>
 
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+
+  <ion-text *ngIf="messageErreur" color="primary" class="ion-text-center">
+    <h3>{{messageErreur}}</h3>
+  </ion-text>
+
   <ng-container *ngIf="mesuresPollution; else elseBlock">
 
     <div class="head ion-padding">
@@ -21,16 +31,16 @@
       <div class="subHead">
 
         <div class="itemMesure">
-          <div class="temperature">{{mesuresMeteo.temperature}}°C
+          <div class="temperature">{{mesuresMeteo.temperature}}<span>°C</span>
           </div>
           <div class="iconCouleurLeger">
             <div>
-              <ion-icon name="arrow-dropdown" size="large"></ion-icon>
-              <ion-label>{{mesuresMeteo.tempMin}}°C</ion-label>
+              <ion-icon name="arrow-down" size="small"></ion-icon>
+              <ion-label>{{mesuresMeteo.tempMin}}<span>°C</span></ion-label>
             </div>
             <div>
-              <ion-icon name="arrow-dropup" size="large"></ion-icon>
-              <ion-label>{{mesuresMeteo.tempMax}}°C</ion-label>
+              <ion-icon name="arrow-up" size="small"></ion-icon>
+              <ion-label>{{mesuresMeteo.tempMax}}<span>°C</span></ion-label>
             </div>
           </div>
         </div>
@@ -62,31 +72,71 @@
 
     </div>
 
+
+
     <div>
-      <ion-list>
-        <ion-item *ngFor="let mesure of mesuresPollution" class="itemPollution">
-          <ion-label>{{mesure.typeDeDonnee}}</ion-label>
-          <ion-note slot="end" color="primary">{{mesure.valeur}} μg/m3</ion-note>
-        </ion-item>
-      </ion-list>
+      <div *ngFor="let mesure of listeMesurePollutionDto; let i = index;" (click)="toggleInfos(i)">
+        <div class="itemPollution">
+          <div>
+            <div>{{mesure.typeDeDonnee}}</div>
+            <div class="detail">{{mesure.texteSymbole}}</div>
+          </div>
+
+          <div [className]="mesure.indiceCouleur  + ' valeur'">
+            <div>{{mesure.valeur}}<span>{{mesure.uniteMesure}}</span></div>
+          </div>
+        </div>
+
+        <div [class.show]="listIsVisible[i]" class="infos">
+
+          <div class="echelle">
+            <div class="fleche"></div>
+            <div>
+              <div class="couleur0"></div>
+              <div>0</div>
+            </div>
+            <div>
+              <div class="couleur1"></div>
+              <div>{{mesure.echelle[0]}}</div>
+            </div>
+            <div>
+              <div class="couleur2"></div>
+              <div>{{mesure.echelle[1]}}</div>
+            </div>
+            <div>
+              <div class="couleur3"></div>
+              <div>{{mesure.echelle[2]}}</div>
+            </div>
+            <div>
+              <div class="couleur4"></div>
+              <div>{{mesure.echelle[3]}}</div>
+            </div>
+
+          </div>
+
+          <!-- 
+          <div class="couleurInvalid valeur">
+            non valide
+          </div> -->
+
+
+        </div>
+      </div>
+
     </div>
 
 
 
-    <ion-fab horizontal="end" vertical="center" slot="fixed">
-      <ion-fab-button color="primary" (click)="actualiserPosition()">
-        <ion-icon name="locate"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
+
 
   </ng-container>
 
   <ng-template #elseBlock>
-    <div class="spinner">
+
+    <div *ngIf="!messageErreur" class="spinner">
       <ion-text>chargement</ion-text>
       <ion-spinner name="dots"></ion-spinner>
     </div>
-
   </ng-template>
 
 

@@ -5,6 +5,13 @@ $color-icon : #63728c;
 $color-primary : var(--ion-color-primary);
 $couleur-fond: #e3e3e4;
 
+$couleur-indice-invalid :#A9A9A9;
+$couleur-indice-0 :#005500;
+$couleur-indice-1 :#00AA00;
+$couleur-indice-2 :#FFAA00;
+$couleur-indice-3 :#FF5500;
+$couleur-indice-4 :#AA0000;
+
 // .head {
 //     --background:none;
 //     background-color: $couleur-fond;
@@ -12,7 +19,8 @@ $couleur-fond: #e3e3e4;
 
 ion-content {
     --background:none;
-    background-image: linear-gradient(to bottom, #63728c, #8b92a7, #b2b5c4, #d9d9e1, #ffffff);
+   // background-image: linear-gradient(to bottom, #1663d2, #2d78dd, #458ce7, #5da0ef, #76b4f7);
+  //  background-image: linear-gradient(to bottom, #63728c, #8b92a7, #b2b5c4, #d9d9e1, #ffffff);
  //   background-image: linear-gradient(to top, #63728c, #8b92a7, #b2b5c4, #d9d9e1, #ffffff);
 }
 
@@ -31,7 +39,6 @@ ion-list, ion-item {
     align-items: center;  
 }
 
-
 .subHead {
     display:flex;
     justify-content: space-evenly;
@@ -41,8 +48,158 @@ ion-list, ion-item {
     border-bottom: $border;
 }
 
+
+.itemPollution {
+    color: $color-icon;
+    display: flex;
+    justify-content: space-between;
+    margin: 25px 16px;
+}
+
+.itemPollution .valeur{
+    display: flex;
+    padding: 0 8px;
+    border-radius: 30px;
+    align-items: center;
+    font-weight: 700;
+}
+
+.itemPollution .valeur div{
+    align-items: center;
+}
+
+.itemPollution .valeur span{
+    font-size: 0.8rem;
+    margin-left: 3px;
+    font-weight: 400;
+}
+
+.itemPollution .detail{
+    font-size: 0.8rem;
+}
+
+
+
 .itemPollution:last-child {
     margin-bottom: 50px;
+}
+
+
+
+
+.couleurInvalid {
+    border: 1px solid $couleur-indice-invalid;
+    color : $couleur-indice-invalid;
+}
+
+.couleur0 {
+    border: 1px solid $couleur-indice-0;
+    color : $couleur-indice-0;
+}
+
+.couleur1 {
+    border: 1px solid $couleur-indice-1;
+    color : $couleur-indice-1;
+}
+
+.couleur2 {
+    border: 1px solid $couleur-indice-2;
+    color : $couleur-indice-2;
+}
+
+
+.couleur3 {
+    border: 1px solid $couleur-indice-3;
+    color : $couleur-indice-3;
+}
+
+
+.couleur4 {
+    border: 1px solid $couleur-indice-4;
+    color : $couleur-indice-4;
+}
+
+
+.infos {
+    font-size: 0.8rem;;
+    overflow: hidden;
+    margin : 0 16px;
+    transition: all 0.2s ease-out;
+    height: 0;
+    display: none;
+}
+
+
+.fleche {
+    position: absolute;
+    box-shadow: 2px 2px 0px 0px white;
+    width: 0px;
+    top: -15px;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    border-radius: 50% 50% 0% 50%;
+    border-bottom: 10px solid #000000;
+    border-left: 10px solid #000000;
+    border-top: 10px solid #000000;
+    border-right: 10px solid #000000;
+}
+
+
+.echelle {
+    height: 50px;
+    position: relative;
+    display: flex;
+    margin-top:15px;
+}
+
+
+
+.echelle > div {
+    flex: 1;
+}
+
+.echelle > div:nth-child(2) div:first-child {
+    border-radius: 5px 0 0 5px;
+}
+
+.echelle > div:last-child div:first-child {
+    border-radius: 0 5px 5px 0;
+}
+
+.echelle .couleur0 {
+   background-color: $couleur-indice-0;
+   border: none;
+}
+.echelle .couleur1 {
+    background-color: $couleur-indice-1;
+   border: none;
+}
+
+.echelle .couleur2 {
+    background-color: $couleur-indice-2;
+   border: none;
+}
+
+.echelle .couleur3 {
+    background-color: $couleur-indice-3;
+   border: none;
+}
+
+.echelle .couleur4 {
+    background-color: $couleur-indice-4;
+   border: none;
+}
+
+
+.echelle > div div:first-child {
+    margin: 5px 0;
+    height: 10px;
+}
+
+
+.show {
+    height: 50px;
+    display: block;
 }
 
 
@@ -68,9 +225,13 @@ ion-list, ion-item {
 }
 
 .temperature {
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-weight: 700;
     color:$color-primary
+}
+.temperature span {
+    font-size: 2rem;
+    margin-bottom: 10px;
 }
 
 .ville {
@@ -82,6 +243,10 @@ ion-list, ion-item {
     color:$color-icon;
 }
 
+
+.itemMesure .iconCouleurLeger div:first-child {
+ margin-right: 5px;
+}
 
 
 .marg {
