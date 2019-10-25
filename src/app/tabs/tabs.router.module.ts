@@ -10,8 +10,8 @@ const routes: Routes = [
     component: TabsPage,
     canActivateChild: [ConnexionGuardService],
     children: [
-      {path: 'meteo',children: [
-          {path: '',loadChildren: () =>import('../meteo/meteo.module').then(m => m.MeteoPageModule)}
+      {path: 'meteo', children: [
+          {path: '', loadChildren: () => import('../meteo/meteo.module').then(m => m.MeteoPageModule)}
         ]},
       {
         path: 'favoris',
@@ -35,7 +35,7 @@ const routes: Routes = [
       }
     ]
   }
-  
+
 ];
 
 @NgModule({
