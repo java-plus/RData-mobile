@@ -4,6 +4,7 @@ import Favori from '../model/Favori';
 import {MesureMeteo} from '../model/MesureMeteo';
 import {MesurePollution} from '../model/MesurePollution';
 import {zip} from 'rxjs';
+import {Router} from '@angular/router';
 
 /**
  * interface representant les données du favori qui est actuellement visible par l’utilisateur
@@ -46,9 +47,13 @@ export class FavorisPage implements OnInit {
      * les données du favori actuellement selectionné
      */
     favoriCourant: FavorisCourant;
+    /**
+     * css permettant de faire la rotation de l'icon indiquant la direction du vent en
+     */
+    cssRotationIcon: string;
 
 
-    constructor(private favorisService: FavorisService) {
+    constructor(private favorisService: FavorisService, private router: Router) {
     }
 
     ngOnInit() {
@@ -90,7 +95,13 @@ export class FavorisPage implements OnInit {
                 mesure.mesureMeteo = mesureM;
                 mesure.mesurePollution = mesureP;
                 this.favoriCourant = mesure;
+                this.cssRotationIcon = 'rotate(' + (this.favoriCourant.mesureMeteo.windDegrees + 180).toString() + 'deg)';
+
             });
+    }
+
+    creerFavori() {
+        this.router.navigate(['/secure/favoris/creation-favoris']);
     }
 
     /**

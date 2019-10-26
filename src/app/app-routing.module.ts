@@ -18,7 +18,8 @@ const routes: Routes = [
     path: '**',
     redirectTo: '/secure/meteo',
     pathMatch: 'full'
-  }
+  },  { path: 'creation-favoris', loadChildren: './favoris/creation-favoris/creation-favoris.module#CreationFavorisPageModule' }
+
 
 ];
 @NgModule({

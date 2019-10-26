@@ -59,6 +59,10 @@ export class RegisterPage implements OnInit {
 
 
   rechercheCorrespondanceCommune(commune) {
+    if(commune.nom==undefined){
+    }else{
+      commune=commune.nom
+    }
     this.communeService.chercherCommunes(commune).pipe(map(items => items.filter(item => item.nom == commune)))
       .subscribe((resp) => {
         if (resp.length == 1) {

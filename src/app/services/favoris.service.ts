@@ -5,6 +5,7 @@ import Favori from '../model/Favori';
 import {environment} from '../../environments/environment';
 import {MesureMeteo} from '../model/MesureMeteo';
 import {MesurePollution} from '../model/MesurePollution';
+import CreationFavori from '../model/CreationFavori';
 
 
 @Injectable({
@@ -55,4 +56,11 @@ export class FavorisService {
 
     }
 
+    /**
+     * Fait une demande d’enregistrement de favori au back.
+     * @param creationFavori favori qui doit être enregistrer
+     */
+    enregistrerFavori(creationFavori: CreationFavori): Observable<Favori> {
+        return this.http.post<Favori>(`${this.URL_BACKEND}/favoris`, creationFavori, this.httpOptions);
+    }
 }

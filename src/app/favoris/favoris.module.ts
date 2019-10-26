@@ -7,12 +7,18 @@ import {IonicModule} from '@ionic/angular';
 
 import {FavorisPage} from './favoris.page';
 import {ComposantsModule} from '../composants/composants.module';
+import {CreationFavorisPage} from './creation-favoris/creation-favoris.page';
 
 const routes: Routes = [
     {
         path: '',
         component: FavorisPage
+    },
+    {
+        path: 'creation-favoris',
+        component: CreationFavorisPage
     }
+
 ];
 
 @NgModule({
@@ -23,7 +29,7 @@ const routes: Routes = [
         IonicModule,
         RouterModule.forChild(routes)
     ],
-    declarations: [FavorisPage]
+    declarations: [FavorisPage, CreationFavorisPage]
 })
 export class FavorisPageModule {
 }

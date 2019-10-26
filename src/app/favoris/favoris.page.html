@@ -37,7 +37,8 @@
                                 <ion-label><span>Vitesse du vent:</span></ion-label><ion-note slot="end" color="dark"> {{favoriCourant.mesureMeteo.windSpeed}} Km/h</ion-note>
                             </ion-item>
                             <ion-item *ngIf="objetFavori.favori.windDegrees === true">
-                                <ion-label><span>Orientation du vent:</span> </ion-label><ion-note slot="end" color="dark">{{favoriCourant.mesureMeteo.windDegrees}} °</ion-note>
+                                <ion-label><span>Orientation du vent:</span> </ion-label><ion-icon slot="end" [ngStyle]="{'transform' : cssRotationIcon}" name="arrow-round-up" ></ion-icon>
+
                             </ion-item>
                             <ion-item *ngIf="objetFavori.favori.mesureSO2 === true">
                                 <ion-label><span>Mesure SO2:</span> </ion-label><ion-note slot="end" color="dark">{{recupererMesurePollutionAvecNom('SO2').valeur}} µg/m3</ion-note>
@@ -52,7 +53,7 @@
                                 <ion-label><span>Mesure NO2:</span></ion-label><ion-note slot="end" color="dark"> {{recupererMesurePollutionAvecNom('NO2').valeur}} µg/m3</ion-note>
                             </ion-item>
                             <ion-item *ngIf="objetFavori.favori.mesureCO === true">
-                                <ion-label><span>Mesure CO:</span></ion-label><ion-note slot="end" color="dark"> {{recupererMesurePollutionAvecNom('CO').valeur}} mg/m3</ion-note>
+                                <ion-label><span>Mesure CO:</span></ion-label><ion-note slot="end" color="dark"> {{recupererMesurePollutionAvecNom('CO').valeur}}  µg/m3</ion-note>
                             </ion-item>
                             <ion-item *ngIf="objetFavori.favori.mesureO3 === true">
                                 <ion-label><span>Mesure O3:</span></ion-label><ion-note slot="end" color="dark"> {{recupererMesurePollutionAvecNom('O3').valeur}} µg/m3</ion-note>
@@ -63,4 +64,9 @@
             </ion-card>
         </ion-item>
     </ion-list>
+    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+        <ion-fab-button (click)="creerFavori()">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
 </ion-content>
