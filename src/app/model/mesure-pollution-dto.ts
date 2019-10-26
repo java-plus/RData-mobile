@@ -24,10 +24,6 @@ export class MesurePollutionDto extends MesurePollution {
      */
     echelle: number[];
     /**
-     * texte descriptif du polluant
-     */
-    description: string;
-    /**
      * number qui sert à positionner en via css la fleche sur l'echelle
      */
     cssPositionFleche: number;

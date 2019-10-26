@@ -38,12 +38,12 @@ export class InfosPollution {
         description: '',
         nom: 'Monoxyde de Carbone',
         symbole: 'CO',
-        echelle: [5, 10, 25, 50],
+        echelle: [5000, 7500, 10000, 20000],
     };
 
     O3: Mesure = {
         unite: 'µg/m3',
-        description: '',
+        description: ``,
         nom: 'Ozone',
         symbole: 'O3',
         echelle: [80, 120, 180, 240]

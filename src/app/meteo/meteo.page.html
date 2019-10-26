@@ -74,8 +74,8 @@
 
 
 
-    <div>
-      <div *ngFor="let mesure of listeMesurePollutionDto; let i = index;" (click)="toggleInfos(i)">
+    <div class="head ion-padding">
+      <div class="polluant" *ngFor="let mesure of listeMesurePollutionDto; let i = index;" (click)="toggleInfos(i)">
         <div class="itemPollution">
           <div>
             <div>{{mesure.typeDeDonnee}}</div>
@@ -112,6 +112,11 @@
               <div>{{mesure.echelle[3]}}</div>
             </div>
 
+          </div>
+
+          <div *ngIf="mesure.valeur <= 0" class="detail">
+            <div class="couleurInvalid"></div>
+            <div>donnée non valide</div>
           </div>
 
 

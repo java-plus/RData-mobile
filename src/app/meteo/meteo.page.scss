@@ -48,12 +48,20 @@ ion-list, ion-item {
     border-bottom: $border;
 }
 
+.polluant {
+    border-bottom: 1px solid #cfcfcf;
+    padding: 0 16px;
+}
+
+.polluant:last-child {
+    border-bottom: none;
+}
 
 .itemPollution {
     color: $color-icon;
     display: flex;
     justify-content: space-between;
-    margin: 25px 16px;
+    margin: 15px 0;
 }
 
 .itemPollution .valeur{
@@ -129,6 +137,19 @@ ion-list, ion-item {
     display: none;
 }
 
+.infos .detail {
+    display: flex;
+    color:$couleur-indice-invalid;
+}
+.infos .detail .couleurInvalid {
+    border: none;
+    width: 15px;
+    height:15px;
+    border-radius: 10px;
+    margin-right:5px;
+    background-color: $couleur-indice-invalid;
+}
+
 
 .fleche {
     position: absolute;
@@ -199,8 +220,9 @@ ion-list, ion-item {
 
 
 .show {
-    height: 50px;
+    height: 80px;
     display: block;
+    margin-bottom: 25px;
 }
 
 .noshow {

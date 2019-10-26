@@ -61,14 +61,17 @@ export class MeteoPage implements OnInit {
    */
   listIsVisible: boolean[] = [];
   /**
-   * les infos des polluants
+   * les infos des polluants permettant de récupéré les echelles...
    */
   infosPollution: InfosPollution = new InfosPollution();
+  /**
+   * initialisation de liste des mesures pollution dto, pour l'affichage
+   */
+  listeMesurePollutionDto: MesurePollutionDto[] = [];
+
 
   constructor(private geolocService: GeolocalisationService, private meteoService: MeteoService) { }
 
-
-  listeMesurePollutionDto: MesurePollutionDto[] = [];
 
 
   /**
@@ -76,15 +79,11 @@ export class MeteoPage implements OnInit {
    * Tranfert certains attribut sans modifications, mais effectue certaines modifications 
    * (comme par exemple : supprime les décimales des valeurs des températures), et renseigne des attributs destinés à l'affiche html 
    * en fonction des valeurs de pollution (comme par exemple : couleur en fonction de la valeur de chaque polluant, texte de description...)
-   * @param {MesurePollution[]} mesures une liste de mesures de pollutions ( MesurePollution[] )
+   * @param  mesures une liste de mesures de pollutions ( MesurePollution[] )
    */
-  mesuresPollutionAffinage(mesures: MesurePollution[]) {
-    const couleurInvalid = '#A9A9A9';
-    const couleur0 = '#005500';
-    const couleur1 = '#00AA00';
-    const couleur2 = '#FFAA00';
-    const couleur3 = '#FF5500';
-    const couleur4 = '#AA0000';
+  transformerMesuresPollutionPourAffichage(mesures: MesurePollution[]) {
+
+    this.listeMesurePollutionDto = [];
 
     mesures.forEach(element => {
 
@@ -120,35 +119,41 @@ export class MeteoPage implements OnInit {
       if (element.valeur <= 0) {
         indiceDanger = 0;
         indiceCouleur = 'couleurInvalid';
+        positionCss = 0;
+      } else if (element.valeur > echelle[echelle.length - 1]) {
+        positionCss = 90;
+        indiceDanger = 4;
+        indiceCouleur = 'couleur4';
       } else {
         for (let index = 0; index < echelle.length; index++) {
           if (element.valeur <= echelle[index]) {
             indiceDanger = index;
             indiceCouleur = 'couleur' + indiceDanger.toString();
+            const positionDeDepart = indiceDanger * 20;
+            const max = echelle[indiceDanger];
+            const calc = (element.valeur * 20) / max;
+            positionCss = positionDeDepart + calc;
             break;
           }
         }
       }
-      /*
-      traitement ci-dessous, calculant la valeur de la propriété css 'left' qui sera utilisée 
-      pour placer la flèche de la valeur du polluant sur l'echelle
-      */
-      if (element.valeur <= 0) {
-        positionCss = 0;
-      } else if (indiceDanger === 5) {
-        positionCss = 90;
-      } else {
-        const positionDeDepart = indiceDanger * 20;
-        const max = echelle[indiceDanger];
-        const calc = (element.valeur * 20) / max;
-        positionCss = positionDeDepart + calc;
-      }
 
-      const mesurePollutionDto = new MesurePollutionDto(element.id, element.valeur, element.typeDeDonnee, element.date, element.stationDeMesure, typeDonneeTexte, indiceDanger, indiceCouleur, uniteMesure, echelle, positionCss);
+      const mesurePollutionDto = new MesurePollutionDto(
+        element.id,
+        element.valeur,
+        element.typeDeDonnee,
+        element.date,
+        element.stationDeMesure,
+        typeDonneeTexte,
+        indiceDanger,
+        indiceCouleur,
+        uniteMesure,
+        echelle,
+        positionCss
+      );
+
       this.listeMesurePollutionDto.push(mesurePollutionDto);
     });
-
-
   }
 
 
@@ -165,10 +170,11 @@ export class MeteoPage implements OnInit {
         this.dateFormatee = new Date(this.mesuresMeteo.date).toLocaleString();
         this.cssRotationIcon = 'rotate(' + (this.mesuresMeteo.windDegrees + 180).toString() + 'deg)';
         this.mesuresPollution = result[1];
-        this.mesuresPollutionAffinage(result[1]);
+        this.transformerMesuresPollutionPourAffichage(result[1]);
         this.mesuresMeteo.temperature = Math.trunc(this.mesuresMeteo.temperature);
         this.mesuresMeteo.tempMax = Math.trunc(this.mesuresMeteo.tempMax);
         this.mesuresMeteo.tempMin = Math.trunc(this.mesuresMeteo.tempMin);
+
       }
     );
   }
@@ -196,17 +202,15 @@ export class MeteoPage implements OnInit {
 
   /**
    * modifie la class css de l'element qui déclenche la méthode
-   * @param {number} num
+   * @param  num number correspondant à l'index du tableau listIsVisible
    */
   toggleInfos(num: number) {
-    console.log('visi avant= ', this.listIsVisible[num]);
     for (let index = 0; index < this.listIsVisible.length; index++) {
       if (this.listIsVisible[index] === true && index !== num) {
         this.listIsVisible[index] = false;
       }
     }
     this.listIsVisible[num] = !this.listIsVisible[num];
-    console.log('visi apres= ', this.listIsVisible[num]);
   }
 
 
