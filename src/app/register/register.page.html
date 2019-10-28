@@ -16,26 +16,26 @@
             <ion-item>
               <ion-input name="email" type="email" placeholder="Email" #etatEmail="ngModel" ngModel  pattern="^[a-zA-Z0–9]+@[a-zA-Z0–9]+\.[a-z]{2,4}$" required></ion-input>
             </ion-item>
-            <p  *ngIf="etatEmail.invalid && etatEmail.dirty">Le format de l'adresse mail doit être du type exemple@exemple.fr(.com)</p>
+            <p  *ngIf="etatEmail.invalid && etatEmail.dirty">Le format de l'adresse mail doit être du type exemple@exemple.fr(.com).</p>
             <ion-item>
               <ion-input name="age" type="text" placeholder="Age" #etatAge="ngModel"  ngModel appAgeValidator required></ion-input>
             </ion-item>
-            <p  *ngIf="etatAge.invalid && etatAge.dirty">L'age doit contenir uniquement des chiffres et être supérieur ou égal à 18</p>
+            <p  *ngIf="etatAge.invalid && etatAge.dirty">L'age doit contenir uniquement des chiffres et être supérieur ou égal à 18.</p>
             
            
               
             
             <ion-item>
-              <ion-input name="password" type="password" [(ngModel)]="password" placeholder="Password"  #etatPassword="ngModel" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^A-Za-z0-9])(?!.*\s).{8,}$"  ngModel required></ion-input>
+              <ion-input name="password" type="password" [(ngModel)]="password" placeholder="Mot de passe"  #etatPassword="ngModel" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^A-Za-z0-9])(?!.*\s).{8,}$"  ngModel required></ion-input>
 
               </ion-item>
-              <p  *ngIf="etatPassword.invalid && etatPassword.dirty">Le mot de passe doit contenir une majuscule, un caractère spécial, un chiffre et au minimum 8 caractères</p>
+              <p  *ngIf="etatPassword.invalid && etatPassword.dirty">Le mot de passe doit contenir une majuscule, un caractère spécial, un chiffre et au minimum 8 caractères.</p>
 
               <ion-item>
-                <ion-input name="confirmationPassword" [(ngModel)]="confirmationPassword" type="password" placeholder="Confirmation du password"  #etatConfirmationPassword="ngModel"  ngModel required></ion-input>
+                <ion-input name="confirmationPassword" [(ngModel)]="confirmationPassword" type="password" placeholder="Confirmation du mot de passe"  #etatConfirmationPassword="ngModel"  ngModel required></ion-input>
 
                 </ion-item>
-                <p  *ngIf="(etatConfirmationPassword.invalid && etatConfirmationPassword.dirty) || confirmationPassword !== password">les deux mots de passes ne correspondent pas</p>
+                <p  *ngIf="(etatConfirmationPassword.invalid && etatConfirmationPassword.dirty) || confirmationPassword !== password">Les deux mots de passes ne correspondent pas.</p>
 
             <p *ngIf="messageError" >{{messageError}}</p>
 
