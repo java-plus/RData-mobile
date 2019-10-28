@@ -12,16 +12,10 @@ $couleur-indice-2 :#FFAA00;
 $couleur-indice-3 :#FF5500;
 $couleur-indice-4 :#AA0000;
 
-// .head {
-//     --background:none;
-//     background-color: $couleur-fond;
-// }
 
 ion-content {
     --background:none;
-   // background-image: linear-gradient(to bottom, #1663d2, #2d78dd, #458ce7, #5da0ef, #76b4f7);
-  //  background-image: linear-gradient(to bottom, #63728c, #8b92a7, #b2b5c4, #d9d9e1, #ffffff);
- //   background-image: linear-gradient(to top, #63728c, #8b92a7, #b2b5c4, #d9d9e1, #ffffff);
+
 }
 
 ion-list, ion-item {
@@ -29,9 +23,6 @@ ion-list, ion-item {
     background-color: #ffffff00;
 }
 
-// ion-list{
-//     background-color:$couleur-fond;
-// }
 
 .topHead > div{
     display: flex;
