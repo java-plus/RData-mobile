@@ -1,10 +1,30 @@
 @import '../../theme/variables.scss';
 
 $border : 1px solid rgb(207, 207, 207);
-$color-icon : #a9a9a9;
+$color-icon : #63728c;
 $color-primary : var(--ion-color-primary);
+$couleur-fond: #e3e3e4;
 
-.head > div{
+$couleur-indice-invalid :#A9A9A9;
+$couleur-indice-0 :#005500;
+$couleur-indice-1 :#00AA00;
+$couleur-indice-2 :#FFAA00;
+$couleur-indice-3 :#FF5500;
+$couleur-indice-4 :#AA0000;
+
+
+ion-content {
+    --background:none;
+
+}
+
+ion-list, ion-item {
+    --background: none;
+    background-color: #ffffff00;
+}
+
+
+.topHead > div{
     display: flex;
     justify-content: center;   
     align-items: center;  
@@ -19,8 +39,186 @@ $color-primary : var(--ion-color-primary);
     border-bottom: $border;
 }
 
+.polluant {
+    border-bottom: 1px solid #cfcfcf;
+    padding: 0 16px;
+}
+
+.polluant:last-child {
+    border-bottom: none;
+}
+
+.itemPollution {
+    color: $color-icon;
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0;
+}
+
+.itemPollution .valeur{
+    display: flex;
+    padding: 0 8px;
+    border-radius: 30px;
+    align-items: center;
+    font-weight: 700;
+}
+
+.itemPollution .valeur div{
+    align-items: center;
+}
+
+.itemPollution .valeur span{
+    font-size: 0.8rem;
+    margin-left: 3px;
+    font-weight: 400;
+}
+
+.itemPollution .detail{
+    font-size: 0.8rem;
+}
+
+
+
 .itemPollution:last-child {
     margin-bottom: 50px;
+}
+
+
+
+
+.couleurInvalid {
+    border: 1px solid $couleur-indice-invalid;
+    color : $couleur-indice-invalid;
+}
+
+.couleur0 {
+    border: 1px solid $couleur-indice-0;
+    color : $couleur-indice-0;
+}
+
+.couleur1 {
+    border: 1px solid $couleur-indice-1;
+    color : $couleur-indice-1;
+}
+
+.couleur2 {
+    border: 1px solid $couleur-indice-2;
+    color : $couleur-indice-2;
+}
+
+
+.couleur3 {
+    border: 1px solid $couleur-indice-3;
+    color : $couleur-indice-3;
+}
+
+
+.couleur4 {
+    border: 1px solid $couleur-indice-4;
+    color : $couleur-indice-4;
+}
+
+
+.infos {
+    font-size: 0.8rem;;
+    overflow: hidden;
+    padding : 0 16px;
+    transition: all 0.2s ease-out;
+    height: 0;
+    display: none;
+}
+
+.infos .detail {
+    display: flex;
+    color:$couleur-indice-invalid;
+}
+.infos .detail .couleurInvalid {
+    border: none;
+    width: 15px;
+    height:15px;
+    border-radius: 10px;
+    margin-right:5px;
+    background-color: $couleur-indice-invalid;
+}
+
+
+.fleche {
+    position: absolute;
+    box-shadow: 2px 2px 0px 0px white;
+    width: 0px;
+    top: -15px;
+    margin-left: -10px;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    border-radius: 50% 50% 0% 50%;
+    border-bottom: 10px solid #000000;
+    border-left: 10px solid #000000;
+    border-top: 10px solid #000000;
+    border-right: 10px solid #000000;
+}
+
+
+.echelle {
+    height: 50px;
+    position: relative;
+    display: flex;
+    margin-top:15px;
+}
+
+
+
+.echelle > div {
+    flex: 1;
+}
+
+.echelle > div:nth-child(2) div:first-child {
+    border-radius: 5px 0 0 5px;
+}
+
+.echelle > div:last-child div:first-child {
+    border-radius: 0 5px 5px 0;
+}
+
+.echelle .couleur0 {
+   background-color: $couleur-indice-0;
+   border: none;
+}
+.echelle .couleur1 {
+    background-color: $couleur-indice-1;
+   border: none;
+}
+
+.echelle .couleur2 {
+    background-color: $couleur-indice-2;
+   border: none;
+}
+
+.echelle .couleur3 {
+    background-color: $couleur-indice-3;
+   border: none;
+}
+
+.echelle .couleur4 {
+    background-color: $couleur-indice-4;
+   border: none;
+}
+
+
+.echelle > div div:first-child {
+    margin: 5px 0;
+    height: 10px;
+}
+
+
+.show {
+    height: 80px;
+    display: block;
+    margin-bottom: 25px;
+}
+
+.noshow {
+    height: 0px;
+    display: block;
 }
 
 
@@ -46,9 +244,13 @@ $color-primary : var(--ion-color-primary);
 }
 
 .temperature {
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-weight: 700;
     color:$color-primary
+}
+.temperature span {
+    font-size: 2rem;
+    margin-bottom: 10px;
 }
 
 .ville {
@@ -60,6 +262,10 @@ $color-primary : var(--ion-color-primary);
     color:$color-icon;
 }
 
+
+.itemMesure .iconCouleurLeger div:first-child {
+ margin-right: 5px;
+}
 
 
 .marg {
