@@ -20,7 +20,7 @@ export class GeolocalisationService {
   }
 
   recupererGeoLocEtCommune(): Observable<LocalisationCommune> {
-    return from(Plugins.Geolocation.getCurrentPosition().then(position => {
+    return from(Plugins.Geolocation.getCurrentPosition({timeout: 30000}).then(position => {
       const latitutde = position.coords.latitude;
       const longitude = position.coords.longitude;
       return [latitutde, longitude];
