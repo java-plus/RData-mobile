@@ -3,10 +3,21 @@
    <ion-text *ngIf="messageError" color="primary" class="ion-text-center"> <h3>{{messageError}}</h3></ion-text>
     <ion-list>
         <ion-item *ngFor="let objetFavori of listeObjetFavori">
-            <ion-card (click)="expandItem(objetFavori)" >
+            <ion-card  >
 
                 <ion-card-header>
-                    <ion-card-title><h4>{{objetFavori.favori.commune.nom}}</h4></ion-card-title>
+                    <ion-row>
+                        <ion-col size="10" (click)="expandItem(objetFavori)">
+                            <ion-card-title><h4>{{objetFavori.favori.commune.nom}}</h4></ion-card-title>
+                        </ion-col>
+                        <ion-col size="2">
+                            <ion-button expand="block" color="danger" (click)="supprimerFavori(objetFavori)" >
+                                <ion-icon name="trash"></ion-icon>
+                            </ion-button>
+                        </ion-col>
+                    </ion-row>
+
+
                 </ion-card-header>
 
                 <ion-card-content>

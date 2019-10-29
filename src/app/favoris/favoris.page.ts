@@ -3,7 +3,7 @@ import {FavorisService} from '../services/favoris.service';
 import Favori from '../model/Favori';
 import {MesureMeteo} from '../model/MesureMeteo';
 import {MesurePollution} from '../model/MesurePollution';
-import {zip} from 'rxjs';
+import {Subscription, zip} from 'rxjs';
 import {Router} from '@angular/router';
 
 /**
@@ -52,11 +52,24 @@ export class FavorisPage implements OnInit {
      */
     cssRotationIcon: string;
 
+    /**
+     * subject transferant les favoris
+     */
+    favoriSub: Subscription;
+
 
     constructor(private favorisService: FavorisService, private router: Router) {
     }
 
     ngOnInit() {
+        this.favoriSub = this.favorisService.favoriSub.subscribe(fav => {
+            this.listeObjetFavori.push({
+                    favori: fav,
+                    expanded: false
+                });
+            console.log(fav);
+        });
+
         /**
          * récuperation des favoris de l’utilisateur courant
          */
@@ -75,6 +88,7 @@ export class FavorisPage implements OnInit {
         );
 
     }
+
 
     /**
      * permet de récuperer les données d’un polluant à partir de son nom
@@ -100,6 +114,9 @@ export class FavorisPage implements OnInit {
             });
     }
 
+    /**
+     * redirige vers la page de creation de favori
+     */
     creerFavori() {
         this.router.navigate(['/secure/favoris/creation-favoris']);
     }
@@ -124,6 +141,18 @@ export class FavorisPage implements OnInit {
             });
         }
     }
+
+    /**
+     * fait une demande de supression de favori
+     * @param objetFavori favori selectionné
+     */
+    supprimerFavori(objetFavori: ObjetFavoris) {
+        this.favorisService.supprimerFavori(objetFavori.favori.id).subscribe(
+            () => this.listeObjetFavori = this.listeObjetFavori.filter((fav) => fav.favori.id !== objetFavori.favori.id));
+
+    }
+
+
 }
 
 
